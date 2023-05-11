@@ -7,9 +7,15 @@ def main():
 
     # This will create a fixed size window of the the game.
     # We could make it flexible but for now hard-coded
-    screen = pygame.display.set_mode((640, 480))
+    SCREEN_WIDTH = 640
+    SCREEN_HEIGHT = 480
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-    # this clock will be used int he game loop to limit the the frame rate to 60.
+    # load and scale background image
+    bg_image = pygame.image.load("assets/images/background/background_swamp.png")
+    scaled_bg = pygame.transform.scale(bg_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
+
+    # this clock will be used in the game loop to limit the the frame rate to 60.
     # Happy to change that, it's copy+paste from a tutorial
     clock = pygame.time.Clock()
 
@@ -39,8 +45,8 @@ def main():
         for player in player_two:
             player.move()
 
-        # draw the two players on the screen for the next frame
-        screen.fill('grey')
+        # draw background and the two players on the screen for the next frame
+        screen.blit(scaled_bg, (0, 0))
         player_one.draw(screen)
         player_two.draw(screen)
 
