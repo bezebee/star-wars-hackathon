@@ -31,6 +31,14 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
+        # handle the movement of the first player
+        for player in player_one:
+            player.move()
+
+        # handle the movement of the second player
+        for player in player_two:
+            player.move()
+
         # draw the two players on the screen for the next frame
         screen.fill('grey')
         player_one.draw(screen)

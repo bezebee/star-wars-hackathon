@@ -9,14 +9,24 @@ class Player(pygame.sprite.Sprite) :
         self.image = pygame.Surface((32, 32))
         self.image.fill( color if color else "lightblue")
         self.rect = self.image.get_rect(center = pos if pos else (200,300))
+        self.pos = pos
 
-    def player_input(self):
-        """to handle all possible user input"""
-        keys = pygame.key.get_pressed()
+    def move(self): 
+        """to handle motion of a player"""
+        # to control the speed of the movement. If they move too fast or slow, change this value.
+        SPEED = 10 
 
-        # this is just an example from a tutorial.
-        # I leave it here just to give an idea how key presses would be
-        # handles with pygame
-        if keys[pygame.K_SPACE] and self.rect.bottom >= 300:
-            # example how to handle jump
-            pass
+        # these handle the change in position of the player, when the move() method is called
+        delta_x = 0
+
+        # get all keypresses
+        key = pygame.key.get_pressed()
+
+        #movement
+        if key[pygame.K_a]:
+            delta_x = -SPEED
+        if key[pygame.K_d]:
+            delta_x = SPEED
+
+        # update player position
+        self.rect.centerx += delta_x
