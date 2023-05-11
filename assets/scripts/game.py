@@ -11,6 +11,10 @@ def main():
     SCREEN_HEIGHT = 480
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    # set screen game name
+    # name can be decided on and updated as desired
+    pygame.display.set_caption("Luke VS Vader")
+
     # load and scale background image
     bg_image = pygame.image.load("assets/images/background/background_swamp.png")
     scaled_bg = pygame.transform.scale(bg_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
