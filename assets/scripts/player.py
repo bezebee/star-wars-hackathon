@@ -14,6 +14,9 @@ class Player(pygame.sprite.Sprite) :
         """to handle all possible user input"""
         keys = pygame.key.get_pressed()
 
+        # this is just an example from a tutorial.
+        # I leave it here just to give an idea how key presses would be
+        # handles with pygame
         if keys[pygame.K_SPACE] and self.rect.bottom >= 300:
             # example how to handle jump
             pass
