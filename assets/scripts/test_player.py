@@ -1,15 +1,14 @@
 """
 This is a unit test for the player class. 
-
 """
 
 from player import Player
 
 def test_can_create_new_player():
-    random_name = "Luke Skywaker"
-    random_health_value = 50
-    random_jump_state = False
-     
-    model =  Player(random_name, random_health_value, random_jump_state)
+    """test if player can be created """
+    random_position= (200,300)
+    random_color =  "blue"
+
+    model =  Player(random_position, random_color)
 
     assert  isinstance(model, Player)
