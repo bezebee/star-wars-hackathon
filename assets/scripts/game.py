@@ -16,11 +16,11 @@ def main():
     # add first player to the game.
     # The use of a GroupSingle was advised to handle collisions between players
     player_one  = pygame.sprite.GroupSingle()
-    player_one.add(Player((200,300), "blue"))
+    player_one.add(Player((200,300), "blue", "Luke Skywalker"))
 
     # add second player to the game. Add this player to a second Group
     player_two  = pygame.sprite.GroupSingle()
-    player_two.add(Player((400,300), "red"))
+    player_two.add(Player((400,300), "red", "Darth Vader"))
 
     # infinite game loop unitl the user clicks on the exit button
     while True:
