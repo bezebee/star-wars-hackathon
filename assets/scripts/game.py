@@ -20,10 +20,20 @@ def main():
     # name can be decided on and updated as desired
     pygame.display.set_caption("Luke VS Vader")
 
+
     # load and scale background image
     bg_image = pygame.image.load("assets/images/background/background_swamp.png")
     scaled_bg = pygame.transform.scale(bg_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    # load fighters spritesheet
+    luke_sheet = pygame.image.load("assets/images/luke/Sprites/luke_sheet.tiff").convert_alpha()
+    darth_sheet = pygame.image.load("assets/images/darth/Sprites/darth.png").convert_alpha()
+
+
+    # define number of steps in each animation
+    LUKE_ANIMATION_STEPS = [3, 9, 8,8,7,8,8,8,6,8,6,6,5,4,8,3,8,7,5]
+    DARTH_ANIMATION_STEPS = [8,6,6,4,6,6,6,4,8,8,6,4,4,4,6,6]
+    
     # this clock will be used in the game loop to limit the the frame rate to 60.
     # Happy to change that, it's copy+paste from a tutorial
     clock = pygame.time.Clock()
