@@ -121,7 +121,7 @@ class Player(pygame.sprite.Sprite) :
         # check for collision. if the target player is in reach, reduce health by 10
         if attacking_rect.colliderect(target.rect):
             # Reduces health if is bigger than 0 
-            if health > 0:
+            if target.health > 0:
                 target.health -= 10
 
         pygame.draw.rect( surface, "green", attacking_rect)
