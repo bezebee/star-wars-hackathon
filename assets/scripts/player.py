@@ -20,6 +20,7 @@ class Player(pygame.sprite.Sprite) :
                      while attacking to avoid multiple attacks by keeping key pressed
         """
         super().__init__()
+        self.flip = False
         self.image = pygame.Surface((32, 32))
         self.image.fill( color if color else "lightblue")
         self.rect = self.image.get_rect(center = pos if pos else (200,300))
@@ -97,6 +98,12 @@ class Player(pygame.sprite.Sprite) :
             # allow to jump again now that player is back on the ground level
             delta_y = screen_height - bottom_level - self.rect.bottom
 
+        # Make players always face each other
+        if target.rect.centerx > self.rect.centerx:
+            self.flip = False
+        else:
+            self.flip = True
+
         # update player position.
         self.rect.centerx += delta_x
         self.rect.centery += delta_y
@@ -115,12 +122,15 @@ class Player(pygame.sprite.Sprite) :
         # create an attacking rectanlge when the player presses attack button
         # the attack is hitting the enemy if that rectange collides
         # with the space of the enemy rectangle
-        attacking_rect = pygame.Rect(self.rect.centerx, self.rect.y,
+        attacking_rect = pygame.Rect(self.rect.centerx - (2 * self.rect.width * self.flip),
+                                     self.rect.y,
                                      2 * self.rect.width, self.rect.height)
 
         # check for collision. if the target player is in reach, reduce health by 10
         if attacking_rect.colliderect(target.rect):
-            target.health -= 10
+            # Reduces health if is bigger than 0 
+            if target.health > 0:
+                target.health -= 10
 
         pygame.draw.rect( surface, "green", attacking_rect)
         return
