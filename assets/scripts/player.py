@@ -28,6 +28,7 @@ class Player(pygame.sprite.Sprite) :
         self.is_jumping = False
         self.is_attacking = False
         self.attack_type = 0
+        self.health = 100
 
     def move(self, screen_width, screen_height, surface, target):
         """to handle motion of a player"""
@@ -117,9 +118,9 @@ class Player(pygame.sprite.Sprite) :
         attacking_rect = pygame.Rect(self.rect.centerx, self.rect.y,
                                      2 * self.rect.width, self.rect.height)
 
-        # check for collision. if the target player is in reach, for now just print this
+        # check for collision. if the target player is in reach, reduce health by 10
         if attacking_rect.colliderect(target.rect):
-            print(f'{self.name} hit the target!')
+            target.health -= 10
 
         pygame.draw.rect( surface, "green", attacking_rect)
         return
