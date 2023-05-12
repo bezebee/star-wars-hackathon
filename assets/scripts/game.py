@@ -42,11 +42,19 @@ def main():
         '''create a health bar with differnt colours for each player'''
         ratio = health / 100
         if player == player_one:
-            pygame.draw.rect(screen, WHITE, (x - 1, y - 1, 222, 22), 2, border_radius=5) # white border
-            pygame.draw.rect(screen, BLUE, (x, y, 220 * ratio, 20), border_radius=5) # blue health bar
+            # white border
+            pygame.draw.rect(screen, WHITE, (x - 1, y - 1, 222, 22), 2, border_radius=5)
+            # Only draw rectangle if health is bigger than 0
+            if health > 0:
+                # blue health bar
+                pygame.draw.rect(screen, BLUE, (x, y, 220 * ratio, 20), border_radius=5)
         elif player == player_two:
-            pygame.draw.rect(screen, WHITE, (x, y, 222, 22), 2, border_radius=5) # white border
-            pygame.draw.rect(screen, RED, (x, y, 220 * ratio, 20), border_radius=5) # red health bar
+            # white border
+            pygame.draw.rect(screen, WHITE, (x, y, 222, 22), 2, border_radius=5)
+            # Only draw rectangle if health is bigger than 0
+            if health > 0:
+                # red health bar
+                pygame.draw.rect(screen, RED, (x, y, 220 * ratio, 20), border_radius=5)
 
     # infinite game loop unitl the user clicks on the exit button
     while True:
