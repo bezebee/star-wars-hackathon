@@ -41,16 +41,18 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
+        # draw background on the screen for the next frame
+        screen.blit(scaled_bg, (0, 0))
+
         # handle the movement of the first player
         for player in player_one:
-            player.move(SCREEN_WIDTH, SCREEN_HEIGHT)
+            player.move(SCREEN_WIDTH, SCREEN_HEIGHT, screen)
 
         # handle the movement of the second player
         for player in player_two:
-            player.move(SCREEN_WIDTH, SCREEN_HEIGHT)
+            player.move(SCREEN_WIDTH, SCREEN_HEIGHT, screen)
 
-        # draw background and the two players on the screen for the next frame
-        screen.blit(scaled_bg, (0, 0))
+       # draw the two players
         player_one.draw(screen)
         player_two.draw(screen)
 
