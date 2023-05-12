@@ -16,7 +16,7 @@ class Player(pygame.sprite.Sprite) :
         self.rect = self.image.get_rect(center = pos if pos else (200,300))
         self.name= name
 
-    def move(self):
+    def move(self, screen_width):
         """to handle motion of a player"""
         # to control the speed of the movement. If they move too fast or slow, change this value.
         player_speed = 10
@@ -41,5 +41,11 @@ class Player(pygame.sprite.Sprite) :
             if key[pygame.K_RIGHT]:
                 delta_x = player_speed
 
-        # update player position
+        #ensure player stays on screen
+        if self.rect.left + delta_x < 0:
+            delta_x =  self.rect.left
+        if self.rect.right + delta_x > screen_width:
+            delta_x = screen_width - self.rect.right
+
+        # update player position. 
         self.rect.centerx += delta_x
