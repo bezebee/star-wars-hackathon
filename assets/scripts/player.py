@@ -16,6 +16,7 @@ class Player(pygame.sprite.Sprite) :
         self.rect = self.image.get_rect(center = pos if pos else (200,300))
         self.name= name
         self.velocity_y = 0
+        self.is_jumping = False   #this variable ensures that jump button has no effect while jumping to avoid double jumps
 
     def move(self, screen_width, screen_height):
         """to handle motion of a player"""
@@ -43,15 +44,17 @@ class Player(pygame.sprite.Sprite) :
                 delta_x = -player_speed
             if key[pygame.K_d]:
                 delta_x = player_speed
-            if key[pygame.K_w]:
+            if key[pygame.K_w] and not self.is_jumping:
                 self.velocity_y = -30 # jumping of the players.
+                self.is_jumping = True
         elif self.name == "Darth Vader":
             if key[pygame.K_LEFT]:
                 delta_x = -player_speed
             if key[pygame.K_RIGHT]:
                 delta_x = player_speed
-            if key[pygame.K_UP]:
+            if key[pygame.K_UP] and not self.is_jumping:
                 self.velocity_y = -30 # jumping of the players.
+                self.is_jumping = True
         
         # reduce velocity each frame so that jumping slows down and eventually reverses
         self.velocity_y += gravity
@@ -66,6 +69,7 @@ class Player(pygame.sprite.Sprite) :
             delta_x = screen_width - self.rect.right
         if self.rect.bottom + delta_y > screen_height - bottom_level:
             self.velocity_y = 0
+            self.is_jumping = False # allow to jump again now that player is back on the ground level
             delta_y = screen_height - bottom_level - self.rect.bottom
 
         # update player position. 
