@@ -26,7 +26,7 @@ class Player(pygame.sprite.Sprite) :
         self.is_jumping = False
         self.attack_type = 0
 
-    def move(self, screen_width, screen_height, surface):
+    def move(self, screen_width, screen_height, surface, target):
         """to handle motion of a player"""
         # to control the speed of the movement. If they move too fast or slow, change this value.
         player_speed = 10
@@ -58,7 +58,7 @@ class Player(pygame.sprite.Sprite) :
                 self.is_jumping = True
             if key[pygame.K_r]:  #attacking of the player
                 self.attack_type = 1
-                self.attack(surface)
+                self.attack(surface, target)
         elif self.name == "Darth Vader":
             if key[pygame.K_LEFT]:
                 delta_x = -player_speed
@@ -69,7 +69,7 @@ class Player(pygame.sprite.Sprite) :
                 self.is_jumping = True
             if key[pygame.K_RSHIFT]:  #attacking of the player
                 self.attack_type = 1
-                self.attack(surface)
+                self.attack(surface, target)
 
         # reduce velocity each frame so that jumping slows down and eventually reverses
         self.velocity_y += gravity
@@ -92,7 +92,7 @@ class Player(pygame.sprite.Sprite) :
         self.rect.centerx += delta_x
         self.rect.centery += delta_y
 
-    def attack(self, surface):
+    def attack(self, surface, target):
         """handles the attack movement 
             not implemented yet
         """
@@ -102,5 +102,10 @@ class Player(pygame.sprite.Sprite) :
         # with the space of the enemy rectangle
         attacking_rect = pygame.Rect(self.rect.centerx, self.rect.y,
                                      2 * self.rect.width, self.rect.height)
+
+        # check for collision. if the target player is in reach, for now just print this
+        if attacking_rect.colliderect(target.rect):
+            print(f'{self.name} hit the target!')
+
         pygame.draw.rect( surface, "green", attacking_rect)
         return

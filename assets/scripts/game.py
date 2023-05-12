@@ -44,13 +44,12 @@ def main():
         # draw background on the screen for the next frame
         screen.blit(scaled_bg, (0, 0))
 
-        # handle the movement of the first player
-        for player in player_one:
-            player.move(SCREEN_WIDTH, SCREEN_HEIGHT, screen)
-
-        # handle the movement of the second player
-        for player in player_two:
-            player.move(SCREEN_WIDTH, SCREEN_HEIGHT, screen)
+        # handle the movement of both players
+        # luke gets vader as target assigned by last parameter
+        # vader gets luke as target assigned by last parameter
+        for luke, vader in zip(player_one, player_two):
+            luke.move(SCREEN_WIDTH, SCREEN_HEIGHT, screen, vader)
+            vader.move(SCREEN_WIDTH, SCREEN_HEIGHT, screen, luke)
 
        # draw the two players
         player_one.draw(screen)
