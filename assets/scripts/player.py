@@ -16,6 +16,8 @@ class Player(pygame.sprite.Sprite) :
         attack_type : this variable stores the attack type that was used by the player.
                        currently 0 means not attack, 1 means standard sabre attack 
                        (for now just one attack)
+        is_jumping : this variable ensures that attack button has no effect
+                     while attacking to avoid multiple attacks by keeping key pressed
         """
         super().__init__()
         self.image = pygame.Surface((32, 32))
@@ -24,6 +26,7 @@ class Player(pygame.sprite.Sprite) :
         self.name= name
         self.velocity_y = 0
         self.is_jumping = False
+        self.is_attacking = False
         self.attack_type = 0
 
     def move(self, screen_width, screen_height, surface, target):
@@ -45,31 +48,36 @@ class Player(pygame.sprite.Sprite) :
         # get all keypresses
         key = pygame.key.get_pressed()
 
-        # The movement depends now on the player name.
-        # If Luke (Player 1), the "A" and "D" handle left and right
-        # If his father (Player 2), the "Left" and "Right" handle left and right
-        if self.name == "Luke Skywalker":
-            if key[pygame.K_a]:
-                delta_x = -player_speed
-            if key[pygame.K_d]:
-                delta_x = player_speed
-            if key[pygame.K_w] and not self.is_jumping:
-                self.velocity_y = -30 # jumping of the players.
-                self.is_jumping = True
-            if key[pygame.K_r]:  #attacking of the player
-                self.attack_type = 1
-                self.attack(surface, target)
-        elif self.name == "Darth Vader":
-            if key[pygame.K_LEFT]:
-                delta_x = -player_speed
-            if key[pygame.K_RIGHT]:
-                delta_x = player_speed
-            if key[pygame.K_UP] and not self.is_jumping:
-                self.velocity_y = -30 # jumping of the players.
-                self.is_jumping = True
-            if key[pygame.K_RSHIFT]:  #attacking of the player
-                self.attack_type = 1
-                self.attack(surface, target)
+
+        # for now, don't do any movements while attacking.
+        # Can be refined later
+        if not self.is_attacking:
+
+            # The movement depends now on the player name.
+            # If Luke (Player 1), the "A" and "D" handle left and right
+            # If his father (Player 2), the "Left" and "Right" handle left and right
+            if self.name == "Luke Skywalker":
+                if key[pygame.K_a]:
+                    delta_x = -player_speed
+                if key[pygame.K_d]:
+                    delta_x = player_speed
+                if key[pygame.K_w] and not self.is_jumping:
+                    self.velocity_y = -30 # jumping of the players.
+                    self.is_jumping = True
+                if key[pygame.K_r]:  #attacking of the player
+                    self.attack_type = 1
+                    self.attack(surface, target)
+            elif self.name == "Darth Vader":
+                if key[pygame.K_LEFT]:
+                    delta_x = -player_speed
+                if key[pygame.K_RIGHT]:
+                    delta_x = player_speed
+                if key[pygame.K_UP] and not self.is_jumping:
+                    self.velocity_y = -30 # jumping of the players.
+                    self.is_jumping = True
+                if key[pygame.K_RSHIFT]:  #attacking of the player
+                    self.attack_type = 1
+                    self.attack(surface, target)
 
         # reduce velocity each frame so that jumping slows down and eventually reverses
         self.velocity_y += gravity
@@ -96,6 +104,12 @@ class Player(pygame.sprite.Sprite) :
         """handles the attack movement 
             not implemented yet
         """
+
+        # set attacking state to suppress any other movements
+        # currently this would just freeze the player
+        # i will not activate the is_attacking for now 
+        # but if you want to keep implementing, uncomment the next line 
+        #self.is_attacking = True
 
         # create an attacking rectanlge when the player presses attack button
         # the attack is hitting the enemy if that rectange collides
