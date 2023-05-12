@@ -43,11 +43,11 @@ def main():
 
         # handle the movement of the first player
         for player in player_one:
-            player.move(SCREEN_WIDTH)
+            player.move(SCREEN_WIDTH, SCREEN_HEIGHT)
 
         # handle the movement of the second player
         for player in player_two:
-            player.move(SCREEN_WIDTH)
+            player.move(SCREEN_WIDTH, SCREEN_HEIGHT)
 
         # draw background and the two players on the screen for the next frame
         screen.blit(scaled_bg, (0, 0))

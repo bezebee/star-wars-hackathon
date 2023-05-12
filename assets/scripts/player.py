@@ -15,14 +15,22 @@ class Player(pygame.sprite.Sprite) :
         self.image.fill( color if color else "lightblue")
         self.rect = self.image.get_rect(center = pos if pos else (200,300))
         self.name= name
+        self.velocity_y = 0
 
-    def move(self, screen_width):
+    def move(self, screen_width, screen_height):
         """to handle motion of a player"""
         # to control the speed of the movement. If they move too fast or slow, change this value.
         player_speed = 10
 
+        # add gravity so that player falls down to his position after jumping up 
+        gravity = 2
+
+        # this is to define the ground level of the players (currently 110 pixels above the screen bottom)
+        bottom_level = 110
+
         # these handle the change in position of the player, when the move() method is called
         delta_x = 0
+        delta_y = 0
 
         # get all keypresses
         key = pygame.key.get_pressed()
@@ -35,17 +43,31 @@ class Player(pygame.sprite.Sprite) :
                 delta_x = -player_speed
             if key[pygame.K_d]:
                 delta_x = player_speed
+            if key[pygame.K_w]:
+                self.velocity_y = -30 # jumping of the players.
         elif self.name == "Darth Vader":
             if key[pygame.K_LEFT]:
                 delta_x = -player_speed
             if key[pygame.K_RIGHT]:
                 delta_x = player_speed
+            if key[pygame.K_UP]:
+                self.velocity_y = -30 # jumping of the players.
+        
+        # reduce velocity each frame so that jumping slows down and eventually reverses
+        self.velocity_y += gravity
+
+        # update the players jumping speed
+        delta_y += self.velocity_y
 
         #ensure player stays on screen
         if self.rect.left + delta_x < 0:
             delta_x =  self.rect.left
         if self.rect.right + delta_x > screen_width:
             delta_x = screen_width - self.rect.right
+        if self.rect.bottom + delta_y > screen_height - bottom_level:
+            self.velocity_y = 0
+            delta_y = screen_height - bottom_level - self.rect.bottom
 
         # update player position. 
         self.rect.centerx += delta_x
+        self.rect.centery += delta_y
