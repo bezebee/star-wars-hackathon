@@ -1,83 +1,71 @@
 """This is the starting point for the game"""
 from player import Player, HealthBar
+from display import Display
 import pygame
 from pygame import mixer
 
 mixer.init()
 
-def main():
-    """function that contains the game loop"""
+class Main:
+    '''Class for main game loop'''
+    def __init__(self):
+        # display dimensions and name
+        self.display = Display(640, 480, "Luke VS Vader")
+        # this clock will be used in the game loop to limit the the frame rate to 60.
+        self.clock = pygame.time.Clock()
+        # add first player to the game.
+        # The use of a GroupSingle was advised to handle collisions between players
+        self.player_one = pygame.sprite.GroupSingle()
+        self.player_one.add(Player((200, 300), "blue", "Luke Skywalker"))
+        self.player_two = pygame.sprite.GroupSingle()
+        self.player_two.add(Player((400, 300), "red", "Darth Vader"))
+        # Create health bars for each player
+        self.health_bar_one = HealthBar(self.player_one.sprite, 20, 20)
+        self.health_bar_two = HealthBar(self.player_two.sprite, 395, 20)
 
-    # This will create a fixed size window of the the game.
-    # We could make it flexible but for now hard-coded
-    SCREEN_WIDTH = 640
-    SCREEN_HEIGHT = 480
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-
-    # set screen game name
-    # name can be decided on and updated as desired
-    pygame.display.set_caption("Luke VS Vader")
-
-    # load and scale background image
-    bg_image = pygame.image.load("assets/images/background/background_swamp.png")
-    scaled_bg = pygame.transform.scale(bg_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
-
-    # load fighters spritesheet
-    luke_sheet = pygame.image.load("assets/images/luke/Sprites/luke_sheet.tiff").convert_alpha()
-    darth_sheet = pygame.image.load("assets/images/darth/Sprites/darth.png").convert_alpha()
-
-
-    # define number of steps in each animation
-    LUKE_ANIMATION_STEPS = [3, 9, 8,8,7,8,8,8,6,8,6,6,5,4,8,3,8,7,5]
-    DARTH_ANIMATION_STEPS = [8,6,6,4,6,6,6,4,8,8,6,4,4,4,6,6]
-
-    # this clock will be used in the game loop to limit the the frame rate to 60.
-    # Happy to change that, it's copy+paste from a tutorial
-    clock = pygame.time.Clock()
-
-    # add first player to the game.
-    # The use of a GroupSingle was advised to handle collisions between players
-    player_one  = pygame.sprite.GroupSingle()
-    player_one.add(Player((200,300), "blue", "Luke Skywalker"))
-
-    # add second player to the game. Add this player to a second Group
-    player_two  = pygame.sprite.GroupSingle()
-    player_two.add(Player((400,300), "red", "Darth Vader"))
-
-    # Create health bars for each player
-    health_bar_one = HealthBar(player_one.sprite, 20, 20)
-    health_bar_two = HealthBar(player_two.sprite, 395, 20)
-
-    # infinite game loop unitl the user clicks on the exit button
-    while True:
-
-        # get all events that pygame has registered
-        events = pygame.event.get()
-        for event in events:
+    def handle_events(self):
+        '''get all events that pygame has registered'''
+        for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                return
+                return True
+        return False
 
-        # draw background on the screen for the next frame
-        screen.blit(scaled_bg, (0, 0))
-
-        # Draw the health bars
-        health_bar_one.draw(screen)
-        health_bar_two.draw(screen)
-
-        # handle the movement of both players
+    def update_players(self):
+        '''handle the movement of both players'''
         # luke gets vader as target assigned by last parameter
         # vader gets luke as target assigned by last parameter
-        for luke, vader in zip(player_one, player_two):
-            luke.move(SCREEN_WIDTH, SCREEN_HEIGHT, screen, vader)
-            vader.move(SCREEN_WIDTH, SCREEN_HEIGHT, screen, luke)
+        for luke, vader in zip(self.player_one, self.player_two):
+            luke.move(self.display.width, self.display.height, self.display.screen, vader)
+            vader.move(self.display.width, self.display.height, self.display.screen, luke)
 
-       # draw the two players
-        player_one.draw(screen)
-        player_two.draw(screen)
+    def run(self):
+        '''Function to run the game'''
 
-        # update the canvas
-        pygame.display.flip()
-        clock.tick(60)
+        # load background image
+        bg_image = self.display.load_image("assets/images/background/background_swamp.png",
+                                            (self.display.width, self.display.height))
+
+        # load fighters spritesheet
+        luke_sheet = self.display.load_image("assets/images/luke/Sprites/luke_sheet.tiff")
+        darth_sheet = self.display.load_image("assets/images/darth/Sprites/darth.png")
+
+        # define number of steps in each animation
+        LUKE_ANIMATION_STEPS = [3, 9, 8, 8, 7, 8, 8, 8, 6, 8, 6, 6, 5, 4, 8, 3, 8, 7, 5]
+        DARTH_ANIMATION_STEPS = [8, 6, 6, 4, 6, 6, 6, 4, 8, 8, 6, 4, 4, 4, 6, 6]
+
+        #infinite game loop until the user clicks on the exit button
+        while True:
+            if self.handle_events():
+                break
+
+            self.display.draw_background(bg_image)# load background image
+            self.display.draw_health_bar(self.health_bar_one)# load health bar player one
+            self.display.draw_health_bar(self.health_bar_two)# load health bar player two
+            self.update_players()# Load function that handles movement of players
+            self.display.draw_sprite(self.player_one)# loads player one
+            self.display.draw_sprite(self.player_two)# loads player two
+            self.display.update()# update display
+            self.clock.tick(60)# start clock
 
 if __name__ == '__main__':
-    main()
+    Main().run()
