@@ -12,12 +12,12 @@ class HealthBar():
         setting dimensions and colour attributes
     """
 
-    def __init__(self, player, x, y):
+    def __init__(self, player, width, height):
         self.player = player
-        self.x = x
-        self.y = y
-        self.width = 222
-        self.height = 22
+        self.width = width
+        self.height = height
+        self.border_width = 222
+        self.border_height = 22
         self.border_radius = 5
         self.border_colour = WHITE
         self.health_colour = BLUE if player.color == 'blue' else RED
@@ -27,9 +27,9 @@ class HealthBar():
         """Draws the health bar on the screen"""
         ratio = self.player.health / 100
         # Border
-        border_rect = pygame.Rect(self.x, self.y, self.width, self.height)
+        border_rect = pygame.Rect(self.width, self.height, self.border_width, self.border_height)
         # Health bar
-        health_rect = pygame.Rect(self.x + 1, self.y + 1, int(220 * ratio)
+        health_rect = pygame.Rect(self.width + 1, self.height + 1, int(220 * ratio)
                                   , self.height - 2)
         # Draw health bar
         pygame.draw.rect(screen, self.border_colour, border_rect, 2,
