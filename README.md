@@ -38,48 +38,23 @@ The game development for the star-wars-hackathon utilized the Bungee font. This 
 
 ### Wireframes
 
-<details>
-  <summary>Design: Game Start</summary>
-  <p align="center">
-    <img src="assets/readme/design-gamestart.png" alt="Design: Game Start" width="50%" height="50%">
-  </p>
-</details>
-<details>
-  <summary>Design: Options</summary>
-  <p align="center">
-    <img src="assets/readme/design-options.png" alt="Design: Options" width="50%" height="50%">
-  </p>
-</details>
-<details>
-  <summary>Design: Countdown 3</summary>
-  <p align="center">
-    <img src="assets/readme/design-countdown3.png" alt="Design: Countdown 3" width="50%" height="50%">
-  </p>
-</details>
-<details>
-  <summary>Design: Countdown 2</summary>
-  <p align="center">
-    <img src="assets/readme/design-countdown2.png" alt="Design: Countdown 2" width="50%" height="50%">
-  </p>
-</details>
-<details>
-  <summary>Design: Countdown 1</summary>
-  <p align="center">
-    <img src="assets/readme/design-countdown1.png" alt="Design: Countdown 1" width="50%" height="50%">
-  </p>
-</details>
-<details>
-  <summary>Design: Countdown Fight</summary>
-  <p align="center">
-    <img src="assets/readme/design-countdownfight.png" alt="Design: Countdown Fight" width="50%" height="50%">
-  </p>
-</details>
-<details>
-  <summary>Design: Game Over</summary>
-  <p align="center">
-    <img src="assets/readme/design-gameover.png" alt="Design: Game Over" width="50%" height="50%">
-  </p>
-</details>
+Here are the images rearranged in a table format with three images in each row:
+
+| Design Options                  | Design Game Start                 | Design Countdown 3               |
+|---------------------------------|----------------------------------|----------------------------------|
+| ![Design Options](assets/readme/design-options.png) | ![Design Game Start](assets/readme/design-gamestart.png) | ![Design Countdown 3](assets/readme/design-countdown3.png) |
+
+| Design Countdown 2              | Design Countdown 1               | Design Countdown Fight           |
+|---------------------------------|----------------------------------|----------------------------------|
+| ![Design Countdown 2](assets/readme/design-countdown2.png) | ![Design Countdown 1](assets/readme/design-countdown1.png) | ![Design Countdown Fight](assets/readme/design-countdownfight.png) |
+
+| Design Game Over                |
+|---------------------------------|
+| ![Design Game Over](assets/readme/design-gameover.png) |
+
+Please note that the table layout may vary depending on the rendering capabilities of the Markdown viewer. Adjust the image paths accordingly based on your project structure.
+
+Feel free to customize the table and styling to suit your needs. If you have any more questions or require further assistance, please let me know!
 
 ### Flowcharts
 
