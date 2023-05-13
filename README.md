@@ -52,9 +52,7 @@ Here are the images rearranged in a table format with three images in each row:
 |---------------------------------|
 | ![Design Game Over](assets/readme/design-gameover.png) |
 
-Please note that the table layout may vary depending on the rendering capabilities of the Markdown viewer. Adjust the image paths accordingly based on your project structure.
 
-Feel free to customize the table and styling to suit your needs. If you have any more questions or require further assistance, please let me know!
 
 ### Flowcharts
 
