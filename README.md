@@ -25,17 +25,26 @@ Star Wars Street Fighter is designed for players aged 15 and above. It captures 
 
 ## Design, Documentation
 
-<img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5157186135504_bde3e09c15e748b14e2b_original_vaun4g.jpg" width="120" height="100"> |<img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5119376632039_db27c3bf13f8f4dbcd96_original_if6wmu.png" width="100" height="100"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972499/1991261958708_34b36fa33c26782c2f14_original_kuz6uu.png" width="100" height="100">
+<img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5157186135504_bde3e09c15e748b14e2b_original_vaun4g.jpg" width="100" height="100"> |<img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5119376632039_db27c3bf13f8f4dbcd96_original_if6wmu.png" width="100" height="100"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972499/1991261958708_34b36fa33c26782c2f14_original_kuz6uu.png" width="100" height="100">
 --- | --- | ---
-**Stefanie** | **Birger** | **Kasia (Scrum Master)** 
+**Stefanie (Lead Designer)** | **Birger** | **Kasia (Scrum Master)** 
 ---
 
 # Design
 
-### Font
-The game development for the star-wars-hackathon utilized the Bungee font. This font choice adds a unique visual style to the game.
+### Typography
+The game development for the star-wars-hackathon utilized the Bungee and Nunito font.
 
-### Color Scheme
+
+| Bungee                                         | Nunito                                          |
+|------------------------------------------------|-------------------------------------------------|
+| ![Bungee](https://res.cloudinary.com/dugnokxox/image/upload/v1683993641/sp-720x400-333333-penultimate_2x_vatlbw.png) | ![Nunito](https://res.cloudinary.com/dugnokxox/image/upload/v1683993641/sp-720x400-333333-penultimate_2x_1_wulfev.png) |
+
+### Color Scheme Typography
+
+<p align="center"><img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683993968/Typography_and_Healthbars_1_lnmk0v.png" ></p>
+
+### Color Scheme Background
 
 **Level 1 - Location: Swamp** 
 <p align="center"><img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683975998/Swamp_Level_1_hqivyr.png" ></p>
@@ -112,12 +121,55 @@ The game development for the star-wars-hackathon utilized the Bungee font. This 
 </details>
 
 
+# Media
+
+
+# Credits
+
+
 # Deployment
 
-### Installation and Setup for Windows 11
+<details>
+  <summary>Installation and Setup for Windows OS</summary>
+ 
+## Install Pygame
 
-To participate in the **star-wars-hackathon**, please follow these steps to set up your environment:
+1. Open a command prompt on your Windows computer. You can do this by pressing the Windows key, typing "Command Prompt", and selecting the Command Prompt application.
 
+2. Ensure that you have pip installed. Enter the following command in the command prompt:
+   ```
+   python -m ensurepip --upgrade
+   ```
+
+3. Install Pygame using pip. Enter the following command in the command prompt:
+   ```
+   pip install pygame
+   ```
+
+   Note: If you have both Python 2 and Python 3 installed on your system, use `pip3` instead of `pip` in the above command.
+
+4. Wait for the installation to complete. Pygame and its dependencies will be downloaded and installed.
+
+5. To verify that Pygame is installed correctly, you can run a sample Pygame program. Create a new Python file, for example, "test.py", and add the following code:
+   ```python
+   import pygame
+
+   pygame.init()
+
+   # Add your Pygame code here
+
+   pygame.quit()
+   ```
+
+6. Save the file and run it by entering the following command in the command prompt:
+   ```
+   python test.py
+   ```
+
+   If Pygame is installed properly, the Pygame window should open without any errors.
+---
+## Running the game
+ 
 1. **Install VS Code:** Download and install Visual Studio Code (VS Code) from the [official website](https://code.visualstudio.com/).
 
 2. **Clone the repository:** Open Command Prompt or PowerShell and execute the following command to clone the hackathon repository:
@@ -162,8 +214,57 @@ After installing the packages, you can run the game using the following command:
 ```shell
 python assets/scripts/game.py
 ```
-### Installation and Setup for Mac OS
+</details> 
 
+<details>
+  <summary>Installation and Setup for Mac OS</summary>
+
+ ## Install Pygame
+ 
+Certainly! Here are the installation steps for Pygame on macOS, rewritten in markdown format:
+
+1. Open a terminal on your Mac. You can do this by going to "Applications" -> "Utilities" -> "Terminal".
+
+2. Ensure that you have pip installed. Enter the following command in the terminal:
+   ```
+   python3 -m ensurepip --upgrade
+   ```
+
+3. Install the dependencies required for Pygame. Enter the following command in the terminal:
+   ```
+   brew install sdl2 sdl2_gfx sdl2_image sdl2_mixer sdl2_net sdl2_ttf
+   ```
+
+   Note: If you don't have Homebrew installed, you can install it by following the instructions at [https://brew.sh](https://brew.sh).
+
+4. Install Pygame using pip. Enter the following command in the terminal:
+   ```
+   pip3 install pygame
+   ```
+
+5. Wait for the installation to complete. Pygame and its dependencies will be downloaded and installed.
+
+6. To verify that Pygame is installed correctly, you can run a sample Pygame program. Create a new Python file, for example, "test.py", and add the following code:
+   ```python
+   import pygame
+
+   pygame.init()
+
+   # Add your Pygame code here
+
+   pygame.quit()
+   ```
+
+7. Save the file and run it by entering the following command in the terminal:
+   ```
+   python3 test.py
+   ```
+
+   If Pygame is installed properly, the Pygame window should open without any errors.
+
+---
+## Running the game
+ 
 1. **Install VS Code:** Download and install Visual Studio Code (VS Code) from the [official website](https://code.visualstudio.com/).
 
 2. **Clone the repository:** Open the terminal and execute the following command to clone the hackathon repository:
@@ -204,4 +305,8 @@ After installing the packages, you can run the game using the following command:
 python3 assets/scripts/game.py
 ```
 
-You are now ready to participate in the **star-wars-hackathon**! Good luck and may the Force be with you!
+ </details>
+ 
+ 
+ 
+Good luck and may the Force be with you!
