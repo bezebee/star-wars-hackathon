@@ -1,6 +1,42 @@
 """Class to describe a player of this game"""
 import pygame
 
+# Colour variables
+RED = (255, 0, 0)
+BLUE = (0, 0, 255)
+WHITE = (255, 255, 255)
+
+
+class HealthBar():
+    """A class to represent a health bar for a player
+        setting dimensions and colour attributes
+    """
+
+    def __init__(self, player, width, height):
+        self.player = player
+        self.width = width
+        self.height = height
+        self.border_width = 222
+        self.border_height = 22
+        self.border_radius = 5
+        self.border_colour = WHITE
+        self.health_colour = BLUE if player.color == 'blue' else RED
+
+
+    def draw(self, screen):
+        """Draws the health bar on the screen"""
+        ratio = self.player.health / 100
+        # Border
+        border_rect = pygame.Rect(self.width, self.height, self.border_width, self.border_height)
+        # Health bar
+        health_rect = pygame.Rect(self.width + 1, self.height + 1, int(220 * ratio)
+                                  , self.height - 2)
+        # Draw health bar
+        pygame.draw.rect(screen, self.border_colour, border_rect, 2,
+                          border_radius=self.border_radius)
+        pygame.draw.rect(screen, self.health_colour, health_rect, border_radius=self.border_radius)
+
+
 class Player(pygame.sprite.Sprite) :
     """Describes a player in the fighting game
         Two player names are allowed
@@ -30,6 +66,7 @@ class Player(pygame.sprite.Sprite) :
         self.is_attacking = False
         self.attack_type = 0
         self.health = 100
+        self.color = color
 
     def move(self, screen_width, screen_height, surface, target):
         """to handle motion of a player"""

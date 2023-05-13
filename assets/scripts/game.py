@@ -1,11 +1,6 @@
 """This is the starting point for the game"""
-from player import Player
+from player import Player, HealthBar
 import pygame
-
-# Colour variables
-RED = (255, 0, 0)
-BLUE = (0, 0, 255)
-WHITE = (255, 255, 255)
 
 def main():
     """function that contains the game loop"""
@@ -33,7 +28,7 @@ def main():
     # define number of steps in each animation
     LUKE_ANIMATION_STEPS = [3, 9, 8,8,7,8,8,8,6,8,6,6,5,4,8,3,8,7,5]
     DARTH_ANIMATION_STEPS = [8,6,6,4,6,6,6,4,8,8,6,4,4,4,6,6]
-    
+
     # this clock will be used in the game loop to limit the the frame rate to 60.
     # Happy to change that, it's copy+paste from a tutorial
     clock = pygame.time.Clock()
@@ -47,24 +42,9 @@ def main():
     player_two  = pygame.sprite.GroupSingle()
     player_two.add(Player((400,300), "red", "Darth Vader"))
 
-    # Create health bar
-    def create_health_bar(player, health, x, y):
-        '''create a health bar with differnt colours for each player'''
-        ratio = health / 100
-        if player == player_one:
-            # white border
-            pygame.draw.rect(screen, WHITE, (x - 1, y - 1, 222, 22), 2, border_radius=5)
-            # Only draw rectangle if health is bigger than 0
-            if health > 0:
-                # blue health bar
-                pygame.draw.rect(screen, BLUE, (x, y, 220 * ratio, 20), border_radius=5)
-        elif player == player_two:
-            # white border
-            pygame.draw.rect(screen, WHITE, (x, y, 222, 22), 2, border_radius=5)
-            # Only draw rectangle if health is bigger than 0
-            if health > 0:
-                # red health bar
-                pygame.draw.rect(screen, RED, (x, y, 220 * ratio, 20), border_radius=5)
+    # Create health bars for each player
+    health_bar_one = HealthBar(player_one.sprite, 20, 20)
+    health_bar_two = HealthBar(player_two.sprite, 395, 20)
 
     # infinite game loop unitl the user clicks on the exit button
     while True:
@@ -78,9 +58,9 @@ def main():
         # draw background on the screen for the next frame
         screen.blit(scaled_bg, (0, 0))
 
-        # display health bar
-        create_health_bar(player_one, player_one.sprite.health, 20, 20)
-        create_health_bar(player_two, player_two.sprite.health, 395, 20)
+        # Draw the health bars
+        health_bar_one.draw(screen)
+        health_bar_two.draw(screen)
 
         # handle the movement of both players
         # luke gets vader as target assigned by last parameter
