@@ -1,8 +1,5 @@
 '''Holds the display functionality'''
 import pygame
-from pygame import mixer
-
-mixer.init()
 
 class Display:
     '''A class that handles display related actions'''
