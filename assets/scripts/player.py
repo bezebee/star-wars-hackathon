@@ -52,7 +52,7 @@ class Player(pygame.sprite.Sprite) :
         In this way, depending on player name, different keys press events cause different moves 
     """
 
-    def __init__(self, pos=None, color=None, name=None) -> None:
+    def __init__(self, pos=None, color=None, name=None, data=None, sprite_sheet=None, animation_steps=None ) -> None:
         """
         is_jumping : this variable ensures that jump button has no effect
                      while jumping to avoid double jumps
@@ -74,6 +74,28 @@ class Player(pygame.sprite.Sprite) :
         self.attack_type = 0
         self.health = 100
         self.color = color
+        self.update_time = pygame.time.get_ticks
+        self.size = data[0]
+        self.animation_list = self.load_images(sprite_sheet, animation_steps)
+        self.action = 0   # 0 is idle, 1 is run
+        self.frame_index = 0
+        self.image = self.animation_list[self.action][self.frame_index]
+
+    def load_images(self, sprite_sheet, animation_steps):
+        """extract images from spritesheet"""
+        animation_list = []
+        for y, animation in enumerate(animation_steps):
+            temp_img_list = []
+            for x in range(animation):
+                temp_img = sprite_sheet.subsurface(x * self.size, y * self.size, self.size, self.size )
+                temp_img_list.append(temp_img)
+            animation_list.append(temp_img_list)
+        return animation_list
+
+    def update(self, surface):
+        """hanlde animation update image """
+        self.image = self.animation_list[self.action][self.frame_index]
+        surface.blit(self.image, (self.rect.x, self.rect.y))
 
     def move(self, screen_width, screen_height, surface, target):
         """to handle motion of a player"""

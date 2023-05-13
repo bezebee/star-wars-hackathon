@@ -20,12 +20,21 @@ class Main:
         # this clock will be used in the game loop to limit the the frame rate to 60.
         self.clock = pygame.time.Clock()
         # add first player to the game.
+        # load fighters spritesheet
+        luke_sheet = self.display.load_image("assets/images/luke/Sprites/luke_sheet.tiff")
+        darth_sheet = self.display.load_image("assets/images/darth/Sprites/darth.png")
+        # define number of steps in each animation
+        LUKE_ANIMATION_STEPS = [3, 9, 8, 8, 7, 8, 8, 8, 6, 8, 6, 6, 5, 4, 8, 3, 8, 7, 5]
+        DARTH_ANIMATION_STEPS = [8, 6, 6, 4, 6, 6, 6, 4, 8, 8, 6, 4, 4, 4, 6, 6]
+        #define sizes of the indivdual images of the sprite sheet
+        LUKE_DATA = [48 ]
+        DARTH_DATA = [48 ]
         # The use of a GroupSingle was advised to handle collisions between players
         self.player_one = pygame.sprite.GroupSingle()
-        self.player_one.add(Player((200, 300), "blue", "Luke Skywalker"))
+        self.player_one.add(Player((200, 300), "blue", "Luke Skywalker",LUKE_DATA, luke_sheet, LUKE_ANIMATION_STEPS))
         # add second player to the game
         self.player_two = pygame.sprite.GroupSingle()
-        self.player_two.add(Player((400, 300), "red", "Darth Vader"))
+        self.player_two.add(Player((400, 300), "red", "Darth Vader", DARTH_DATA, darth_sheet, DARTH_ANIMATION_STEPS))
         # Create health bars for each player
         self.health_bar_one = HealthBar(self.player_one.sprite, 20, 20)
         self.health_bar_two = HealthBar(self.player_two.sprite, 395, 20)
@@ -72,14 +81,6 @@ class Main:
         # load background image
         bg_image = self.display.load_image("assets/images/background/background_swamp.png",
                                             (self.display.width, self.display.height))
-
-        # load fighters spritesheet
-        luke_sheet = self.display.load_image("assets/images/luke/Sprites/luke_sheet.tiff")
-        darth_sheet = self.display.load_image("assets/images/darth/Sprites/darth.png")
-
-        # define number of steps in each animation
-        LUKE_ANIMATION_STEPS = [3, 9, 8, 8, 7, 8, 8, 8, 6, 8, 6, 6, 5, 4, 8, 3, 8, 7, 5]
-        DARTH_ANIMATION_STEPS = [8, 6, 6, 4, 6, 6, 6, 4, 8, 8, 6, 4, 4, 4, 6, 6]
 
         #infinite game loop until the user clicks on the exit button
         while True:
