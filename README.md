@@ -38,8 +38,6 @@ The game development for the star-wars-hackathon utilized the Bungee and Nunito 
 
 | Bungee                                         | Nunito                                          |
 |------------------------------------------------|-------------------------------------------------|
-| ![Bungee](https://res.cloudinary.com/dugnokxox/image/upload/v1683993641/sp-720x400-333333-penultimate_2x_vatlbw.png) | ![Nunito](https://res.cloudinary.com/dugnokxox/image/upload/v1683993641/sp-720x400-333333-penultimate_2x_1_wulfev.png) |
-
 ### Color Scheme Typography
 
 <p align="center"><img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683993968/Typography_and_Healthbars_1_lnmk0v.png" ></p>
