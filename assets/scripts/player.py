@@ -1,5 +1,6 @@
 """Class to describe a player of this game"""
 import pygame
+pygame.font.init() # Initialize the Pygame font
 
 # Colour variables
 RED = (255, 0, 0)
@@ -21,7 +22,7 @@ class HealthBar():
         self.border_radius = 5
         self.border_colour = WHITE
         self.health_colour = BLUE if player.color == 'blue' else RED
-
+        self.font = pygame.font.SysFont('Arial', 14)  # Set the font for the health text
 
     def draw(self, screen):
         """Draws the health bar on the screen"""
@@ -35,6 +36,12 @@ class HealthBar():
         pygame.draw.rect(screen, self.border_colour, border_rect, 2,
                           border_radius=self.border_radius)
         pygame.draw.rect(screen, self.health_colour, health_rect, border_radius=self.border_radius)
+        # Draw the health stats
+        health_text = self.font.render(f' {self.player.health} /100', True, WHITE)
+        text_rect = health_text.get_rect()
+        text_rect.center = (self.width + self.border_width / 2,
+                             self.height + self.border_height / 2)
+        screen.blit(health_text, text_rect)
 
 
 class Player(pygame.sprite.Sprite) :
