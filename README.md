@@ -45,7 +45,6 @@ The game development for the star-wars-hackathon utilized the Bungee font. This 
 
 ### Wireframes
 
-Here are the images rearranged in a table format with three images in each row:
 
 | Design Options                  | Design Game Start                 | Design Countdown 3               |
 |---------------------------------|----------------------------------|----------------------------------|
