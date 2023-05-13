@@ -20,6 +20,15 @@ class Display:
         '''Draw background'''
         self.screen.blit(image, (0, 0))
 
+    def define_font(self, path, size):
+        '''Define font'''
+        return pygame.font.Font(path, size)
+
+    def draw_text(self, text, font, text_color, x, y):
+        '''Draw text'''
+        image = font.render(text, True, text_color)
+        self.screen.blit(image, (x, y))
+
     def draw_sprite(self, sprite):
         '''Draw sprite'''
         sprite.draw(self.screen)
