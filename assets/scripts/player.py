@@ -1,5 +1,48 @@
 """Class to describe a player of this game"""
 import pygame
+pygame.font.init() # Initialize the Pygame font
+
+# Colour variables
+RED = (255, 0, 0)
+BLUE = (0, 0, 255)
+WHITE = (255, 255, 255)
+
+
+class HealthBar():
+    """A class to represent a health bar for a player
+        setting dimensions and colour attributes
+    """
+
+    def __init__(self, player, width, height):
+        self.player = player
+        self.width = width
+        self.height = height
+        self.border_width = 222
+        self.border_height = 22
+        self.border_radius = 5
+        self.border_colour = WHITE
+        self.health_colour = BLUE if player.color == 'blue' else RED
+        self.font = pygame.font.SysFont('Arial', 14)  # Set the font for the health text
+
+    def draw(self, screen):
+        """Draws the health bar on the screen"""
+        ratio = self.player.health / 100
+        # Border
+        border_rect = pygame.Rect(self.width, self.height, self.border_width, self.border_height)
+        # Health bar
+        health_rect = pygame.Rect(self.width + 1, self.height + 1, int(220 * ratio)
+                                  , self.height - 2)
+        # Draw health bar
+        pygame.draw.rect(screen, self.border_colour, border_rect, 2,
+                          border_radius=self.border_radius)
+        pygame.draw.rect(screen, self.health_colour, health_rect, border_radius=self.border_radius)
+        # Draw the health stats
+        health_text = self.font.render(f' {self.player.health} /100', True, WHITE)
+        text_rect = health_text.get_rect()
+        text_rect.center = (self.width + self.border_width / 2,
+                             self.height + self.border_height / 2)
+        screen.blit(health_text, text_rect)
+
 
 class Player(pygame.sprite.Sprite) :
     """Describes a player in the fighting game
@@ -20,6 +63,7 @@ class Player(pygame.sprite.Sprite) :
                      while attacking to avoid multiple attacks by keeping key pressed
         """
         super().__init__()
+        self.flip = False
         self.image = pygame.Surface((32, 32))
         self.image.fill( color if color else "lightblue")
         self.rect = self.image.get_rect(center = pos if pos else (200,300))
@@ -29,6 +73,7 @@ class Player(pygame.sprite.Sprite) :
         self.is_attacking = False
         self.attack_type = 0
         self.health = 100
+        self.color = color
 
     def move(self, screen_width, screen_height, surface, target):
         """to handle motion of a player"""
@@ -97,6 +142,12 @@ class Player(pygame.sprite.Sprite) :
             # allow to jump again now that player is back on the ground level
             delta_y = screen_height - bottom_level - self.rect.bottom
 
+        # Make players always face each other
+        if target.rect.centerx > self.rect.centerx:
+            self.flip = False
+        else:
+            self.flip = True
+
         # update player position.
         self.rect.centerx += delta_x
         self.rect.centery += delta_y
@@ -115,12 +166,15 @@ class Player(pygame.sprite.Sprite) :
         # create an attacking rectanlge when the player presses attack button
         # the attack is hitting the enemy if that rectange collides
         # with the space of the enemy rectangle
-        attacking_rect = pygame.Rect(self.rect.centerx, self.rect.y,
+        attacking_rect = pygame.Rect(self.rect.centerx - (2 * self.rect.width * self.flip),
+                                     self.rect.y,
                                      2 * self.rect.width, self.rect.height)
 
         # check for collision. if the target player is in reach, reduce health by 10
         if attacking_rect.colliderect(target.rect):
-            target.health -= 10
+            # Reduces health if is bigger than 0 
+            if target.health > 0:
+                target.health -= 10
 
         pygame.draw.rect( surface, "green", attacking_rect)
         return
