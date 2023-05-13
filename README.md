@@ -2,7 +2,7 @@
 
 # Star Wars Fighter
 
-![Star Wars Fighter](https://res.cloudinary.com/dugnokxox/image/upload/v1683977827/Untitled_design_2_1_ytahxt.png)
+![Star Wars Fighter](https://res.cloudinary.com/dugnokxox/image/upload/v1683981748/Untitled_design_3_1_bin4w8.png)
 
 Star Wars Fighter is a Python/Pygame-based game inspired by the classic Street Fighter series, set in the iconic Star Wars universe. In this game, players can engage in intense battles between legendary characters such as Luke Skywalker and Darth Vader.
 
