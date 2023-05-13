@@ -1,6 +1,9 @@
 """This is the starting point for the game"""
 from player import Player, HealthBar
 import pygame
+from pygame import mixer
+
+mixer.init()
 
 def main():
     """function that contains the game loop"""
@@ -14,7 +17,6 @@ def main():
     # set screen game name
     # name can be decided on and updated as desired
     pygame.display.set_caption("Luke VS Vader")
-
 
     # load and scale background image
     bg_image = pygame.image.load("assets/images/background/background_swamp.png")
