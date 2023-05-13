@@ -16,12 +16,19 @@ Star Wars Street Fighter is designed for players aged 15 and above. It captures 
 
 ---
 
- # Team
+# Team
+## Development 
  
-<img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/2956511464374_571116d863fdb7cfdddc_original_twyjgm.jpg" width="100" height="100"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972499/T0L30B202-U04DA4ZBYQP-d6a19f923a1c-512_mjw3aj.jpg" width="100" height="100"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5096181649479_1cb1d13081a7b21529ee_original_z2stt5.jpg" width="100" height="100"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/T0L30B202-U027SSHGWR2-ee27a6441a05-512_big514.jpg" width="100" height="100"> |<img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683974819/T0L30B202-U035YTTV8AY-15207e3a48c9-512_ugxg9a.jpg" width="100" height="100">|<img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5157186135504_bde3e09c15e748b14e2b_original_vaun4g.jpg" width="120" height="100">|<img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5119376632039_db27c3bf13f8f4dbcd96_original_if6wmu.png" width="100" height="100"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972499/1991261958708_34b36fa33c26782c2f14_original_kuz6uu.png" width="100" height="100">
---- | --- | --- | --- | --- | --- | --- | ---
-**Alexa** | **Nils** | **Enda** | **Marcello** | **Axel** | **Stefanie** | **Birger** | **Kasia**
- **Development Team** |  **Development Team** |  **Development Team** |  **Development Team** |  **Development Team** | **Design, README** | **Design, README** | **Scrum Master, Design, README**
+<img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/2956511464374_571116d863fdb7cfdddc_original_twyjgm.jpg" width="100" height="100"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972499/T0L30B202-U04DA4ZBYQP-d6a19f923a1c-512_mjw3aj.jpg" width="100" height="100"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5096181649479_1cb1d13081a7b21529ee_original_z2stt5.jpg" width="100" height="100"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/T0L30B202-U027SSHGWR2-ee27a6441a05-512_big514.jpg" width="100" height="100"> |<img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683974819/T0L30B202-U035YTTV8AY-15207e3a48c9-512_ugxg9a.jpg" width="100" height="100">
+--- | --- | --- | --- | --- 
+**Alexa** | **Nils** | **Enda** | **Marcello** | **Axel**
+
+## Design, Documentation
+
+<img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5157186135504_bde3e09c15e748b14e2b_original_vaun4g.jpg" width="120" height="100"> |<img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5119376632039_db27c3bf13f8f4dbcd96_original_if6wmu.png" width="100" height="100"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972499/1991261958708_34b36fa33c26782c2f14_original_kuz6uu.png" width="100" height="100">
+--- | --- | ---
+**Stefanie** | **Birger** | **Kasia (Scrum Master)** 
+---
 
 # Design
 
