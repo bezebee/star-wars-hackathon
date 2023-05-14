@@ -80,6 +80,7 @@ class Player(pygame.sprite.Sprite):
         self.is_winning = False
         self.is_falling = False
         self.is_running = False
+        self.is_alive = True
         self.blocking_start_time = 0 # controls blocking cooldown time
         self.attack_type = 0
         self.attack_cooldown = 10 # controls attack type cooldown
@@ -171,7 +172,7 @@ class Player(pygame.sprite.Sprite):
 
         # for now, don't do any movements while attacking.
         # Can be refined later
-        if not self.is_attacking:
+        if not self.is_attacking and self.is_alive:
 
             # The movement depends now on the player name.
             # If Luke (Player 1), the "A" and "D" handle left and right
