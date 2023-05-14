@@ -30,7 +30,7 @@ class Main:
         darth_sheet = self.display.load_image("assets/images/darth/Sprites/Frame-Vader-six-moves-49x72.png")
         # define number of steps in each animation
         LUKE_ANIMATION_STEPS = [7, 4, 8, 4, 8, 6, 6]
-        DARTH_ANIMATION_STEPS = [ 7, 7, 6, 4, 8, 5, 5 ]
+        DARTH_ANIMATION_STEPS = [ 7, 6, 6, 4, 8, 5, 5 ]
         # define the scaling of the images from the sprite sheet to match the rectangle size
         LUKE_SCALE = 2
         DARTH_SCALE = 2
