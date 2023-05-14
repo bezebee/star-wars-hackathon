@@ -24,7 +24,7 @@ class HealthBar():
         self.border_colour = WHITE
         self.health_colour = BLUE if player.color == 'blue' else RED
         # Set the font for the health text
-        self.font = pygame.font.SysFont('Nunito', 14)
+        self.font = pygame.font.Font("assets/fonts/bungee_regular.ttf", 12)
 
     def draw(self, screen):
         """Draws the health bar on the screen"""
