@@ -48,6 +48,21 @@ class HealthBar():
                             self.height + self.border_height / 2)
         screen.blit(health_text, text_rect)
 
+        # Draws a blue circle at the left or right of the health bar depending of the player
+        if self.player.name == "Luke Skywalker":
+            circle_pos = (self.width + self.border_width // 2 - 100, self.height + 40)
+            border_width = 2
+            radius = 10
+        else:
+            circle_pos = (self.width + self.border_width // 2 + 100, self.height + 40)
+            border_width = 2
+            radius = 10
+        if self.player.force == 10:
+            pygame.draw.circle(screen, WHITE, circle_pos, radius + border_width, border_width)
+            pygame.draw.circle(screen, BLUE, circle_pos, radius)
+        else:
+            pygame.draw.circle(screen, WHITE, circle_pos, radius + border_width, border_width)
+
 
 class Player(pygame.sprite.Sprite):
     """Describes a player in the fighting game
@@ -132,7 +147,6 @@ class Player(pygame.sprite.Sprite):
         img = self.animation_list[self.action][int(self.frame_index)]
         #flip the image so that the fighters face each other
         self.image = pygame.transform.flip( img,  self.flip , False)
-        pygame.draw.rect(self.image, "red", [0, 0, self.width, self.height], 2)
 
     def set_current_action(self):
         """
@@ -325,5 +339,4 @@ class Player(pygame.sprite.Sprite):
                         target.health -= 10 # attack type 2 deals 10 of damage
                 elif self.attack_type == 2: # attack type 2 will deal damage even when blocking
                     target.health -= 20 # if blocking attack type 2 deals double damage
-        pygame.draw.rect(surface, "green", attacking_rect)
         return
