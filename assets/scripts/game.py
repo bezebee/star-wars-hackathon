@@ -54,7 +54,7 @@ class Main:
         self.count_font = self.display.define_font("assets/fonts/bungee_regular.ttf", 48)
         self.score_font = self.display.define_font("assets/fonts/bungee_regular.ttf", 24)
         # set countdown starting number
-        self.intro_count = 3
+        self.intro_count = 4
         # update last count
         self.last_count_update = pygame.time.get_ticks()
         # define game over

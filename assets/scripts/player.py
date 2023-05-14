@@ -7,6 +7,7 @@ pygame.font.init()  # Initialize the Pygame font
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 WHITE = (255, 255, 255)
+GREEN = (0, 255, 0)
 
 
 class HealthBar():
@@ -48,7 +49,7 @@ class HealthBar():
                             self.height + self.border_height / 2)
         screen.blit(health_text, text_rect)
 
-        # Draws a blue circle at the left or right of the health bar depending of the player
+        # Draws a green force circle at the left or right of the health bar depending of the player
         if self.player.name == "Luke Skywalker":
             circle_pos = (self.width + self.border_width //
                           2 - 100, self.height + 40)
@@ -62,7 +63,7 @@ class HealthBar():
         if self.player.force == 10:
             pygame.draw.circle(screen, WHITE, circle_pos,
                                radius + border_width, border_width)
-            pygame.draw.circle(screen, BLUE, circle_pos, radius)
+            pygame.draw.circle(screen, GREEN, circle_pos, radius)
         else:
             pygame.draw.circle(screen, WHITE, circle_pos,
                                radius + border_width, border_width)
