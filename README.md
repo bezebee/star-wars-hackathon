@@ -39,6 +39,7 @@ The game development for the this project utilized the Bungee and Nunito font.
 
 | Bungee                                         | Nunito                                          |
 |------------------------------------------------|-------------------------------------------------|
+|<img src="https://res.cloudinary.com/dugnokxox/image/upload/v1684079257/bungee_hpnhcr.png" >|<img src="https://res.cloudinary.com/dugnokxox/image/upload/v1684079257/nunito_akc9ng.png" >|
 ### Color Scheme Typography
 
 <p align="center"><img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683993968/Typography_and_Healthbars_1_lnmk0v.png" ></p>
