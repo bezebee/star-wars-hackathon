@@ -1,5 +1,6 @@
 """Class to describe a player of this game"""
 import pygame
+from soundmanager import SoundManager
 pygame.font.init() # Initialize the Pygame font
 
 # Colour variables
@@ -52,7 +53,7 @@ class Player(pygame.sprite.Sprite) :
         In this way, depending on player name, different keys press events cause different moves 
     """
 
-    def __init__(self, pos=None, color=None, name=None) -> None:
+    def __init__(self, pos=None, color=None, name=None, data=None, sprite_sheet=None, animation_steps=None ) -> None:
         """
         is_jumping : this variable ensures that jump button has no effect
                      while jumping to avoid double jumps
@@ -64,7 +65,7 @@ class Player(pygame.sprite.Sprite) :
         """
         super().__init__()
         self.flip = False
-        self.image = pygame.Surface((32, 32))
+        self.image = pygame.Surface((48, 48))
         self.image.fill( color if color else "lightblue")
         self.rect = self.image.get_rect(center = pos if pos else (200,300))
         self.name= name
@@ -74,7 +75,36 @@ class Player(pygame.sprite.Sprite) :
         self.attack_type = 0
         self.health = 100
         self.color = color
+        self.update_time = pygame.time.get_ticks
+        self.height = data[0]
+        self.width = data[1]
+        self.image_scale = data[2]
+        self.offset = data[3]
+        self.animation_list = self.load_images(sprite_sheet, animation_steps)
+        self.action = 0  # 0 is idle, 1 is run
+        self.frame_index = 0
+        self.sound_manager = SoundManager()
 
+    def load_images(self, sprite_sheet, animation_steps):
+        """extract images from spritesheet"""
+        animation_list = []
+        for y, animation in enumerate(animation_steps):
+            temp_img_list = []
+            for x in range(animation):
+                temp_img = sprite_sheet.subsurface(x * self.width, y * self.height, self.width, self.height )
+                temp_img_list.append(pygame.transform.scale(temp_img, (self.width * self.image_scale, self.width * self.image_scale)))
+            animation_list.append(temp_img_list)
+        return animation_list
+    
+    def update(self):
+        """add animation to static images from sprite sheet"""
+        self.frame_index += .1
+        # ensure that it reads only images that are in the sprite sheet
+        if self.frame_index > len(self.animation_list[self.action]):
+            self.frame_index = 0
+        self.image = self.animation_list[self.action][int(self.frame_index)]
+        pygame.draw.rect(self.image, "red", [0,0,self.width,self.height], 2)
+        
     def move(self, screen_width, screen_height, surface, target):
         """to handle motion of a player"""
         # to control the speed of the movement. If they move too fast or slow, change this value.
@@ -156,6 +186,10 @@ class Player(pygame.sprite.Sprite) :
         """handles the attack movement 
             not implemented yet
         """
+
+        # play the attack sound fx
+        self.sound_manager.play_luke_attack_sound()
+
 
         # set attacking state to suppress any other movements
         # currently this would just freeze the player
