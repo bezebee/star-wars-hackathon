@@ -124,7 +124,9 @@ class Player(pygame.sprite.Sprite):
         # ensure that it reads only images that are in the sprite sheet
         if self.frame_index > len(self.animation_list[self.action]):
             self.frame_index = 0
-        self.image = self.animation_list[self.action][int(self.frame_index)]
+        img = self.animation_list[self.action][int(self.frame_index)]
+        #flip the image so that the fighters face each other
+        self.image = pygame.transform.flip( img,  self.flip , False)
         pygame.draw.rect(self.image, "red", [0, 0, self.width, self.height], 2)
 
     def set_current_action(self):
@@ -284,7 +286,7 @@ class Player(pygame.sprite.Sprite):
         # currently this would just freeze the player
         # i will not activate the is_attacking for now 
         # but if you want to keep implementing, uncomment the next line
-        #self.is_attacking = True
+        self.is_attacking = True
 
         # create an attacking rectanlge when the player presses attack button
         # the attack is hitting the enemy if that rectange collides
