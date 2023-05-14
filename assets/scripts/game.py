@@ -64,6 +64,9 @@ class Main:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return True
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_p:
+                    self.Pause()
         return False
 
     def update_players(self):
@@ -101,10 +104,14 @@ class Main:
             self.display.draw_text("Game Over!", self.count_font, WHITE, self.display.width / 3.5 , self.display.height / 3)
             self.game_over = False
 
-    def Pause():
+    def Pause(self):
         paused = True
 
         while paused:
+            self.display.draw_text("Paused", self.count_font, WHITE, self.display.width / 3.15 , self.display.height / 3)
+            self.display.draw_text("C to Continue!", self.count_font, WHITE, self.display.width / 5 , self.display.height / 1.75)
+            self.display.draw_text("ESC to Quit!", self.count_font, WHITE, self.display.width / 4.75 , self.display.height / 1.25)
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -112,8 +119,11 @@ class Main:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_c:
                         paused = False
-                    elif event.key == pygame.K_q:
+                    elif event.key == pygame.K_ESCAPE:
                         pygame.quit()
+
+            pygame.display.update()
+            
     
     def scene_flow(self):
         intro = True
@@ -152,15 +162,14 @@ class Main:
                         intro = True
                         options =False
                     if event.key == pygame.K_ESCAPE:
-                        print("Quit game")
                         options = False
-                        intro = True
+                        self.run()
             pygame.display.update()
 
     
     def run(self):
         '''Function to run the game'''
-
+        self.scene_flow()
         # load background image
         bg_image = self.display.load_image("assets/images/background/background_swamp.png",
                                             (self.display.width, self.display.height))
@@ -168,7 +177,7 @@ class Main:
         # load background music
         self.sound_manager.play_background_music()
 
-        self.scene_flow()
+        
 
         #infinite game loop until the user clicks on the exit button
         while True:
