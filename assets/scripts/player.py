@@ -133,9 +133,8 @@ class Player(pygame.sprite.Sprite):
         """add animation to static images from sprite sheet"""
         # determine what kind of action the player is doing at the moment
         # quick debuggin : since we have only the sheet for luke ready, only animate luke
-        # for the moment
-        if self.name == "Luke Skywalker":
-            self.set_current_action()
+        # for the moment 
+        self.set_current_action()
         self.frame_index += .1
         # ensure that it reads only images that are in the sprite sheet
         if self.frame_index > len(self.animation_list[self.action]):
@@ -149,8 +148,9 @@ class Player(pygame.sprite.Sprite):
                 self.frame_index = len(self.animation_list[5]) - 1
 
         img = self.animation_list[self.action][int(self.frame_index)]
-        # flip the image so that the fighters face each other
-        self.image = pygame.transform.flip(img,  self.flip, False)
+        #flip the image so that the fighters face each other
+        self.image = pygame.transform.flip( img,  self.flip , False)
+        pygame.draw.rect(self.image, "red", [0, 0, self.width, self.height], 2)
 
     def set_current_action(self):
         """
@@ -161,7 +161,7 @@ class Player(pygame.sprite.Sprite):
         if self.is_jumping:
             self.update_action(3)
         else:
-            if self.is_attacking:
+            if self.is_attacking :
                 self.update_action(1)
             elif self.is_blocking:
                 self.update_action(6)  # blocking state
@@ -322,7 +322,7 @@ class Player(pygame.sprite.Sprite):
         # currently this would just freeze the player
         # i will not activate the is_attacking for now
         # but if you want to keep implementing, uncomment the next line
-        # self.is_attacking = True
+        self.is_attacking = True
 
         # create an attacking rectanlge when the player presses attack button
         # the attack is hitting the enemy if that rectange collides
