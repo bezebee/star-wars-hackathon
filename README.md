@@ -23,11 +23,11 @@ Star Wars Street Fighter is designed for players aged 15 and above. It captures 
 --- | --- | --- | --- | --- 
 **Alexa** | **Nils** | **Enda** | **Marcello** | **Axel**
 
-## Design, Documentation
+## Audio, Design, Documentation
 
 <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5157186135504_bde3e09c15e748b14e2b_original_vaun4g.jpg" width="100" height="100"> |<img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5119376632039_db27c3bf13f8f4dbcd96_original_if6wmu.png" width="100" height="100"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972499/1991261958708_34b36fa33c26782c2f14_original_kuz6uu.png" width="100" height="100">
 --- | --- | ---
-**Stefanie (Lead Designer)** | **Birger** | **Kasia (Scrum Master)** 
+**Stefanie (Lead Designer)** | **Birger (Lead Audio)** | **Kasia (Scrum Master)** 
 ---
 
 # Design
