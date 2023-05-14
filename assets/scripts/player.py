@@ -124,6 +124,9 @@ class Player(pygame.sprite.Sprite):
         # ensure that it reads only images that are in the sprite sheet
         if self.frame_index > len(self.animation_list[self.action]):
             self.frame_index = 0
+            #when the animation is complete, allow to attack again
+            if self.action==1:
+                self.is_attacking = 0
         img = self.animation_list[self.action][int(self.frame_index)]
         #flip the image so that the fighters face each other
         self.image = pygame.transform.flip( img,  self.flip , False)
@@ -160,6 +163,9 @@ class Player(pygame.sprite.Sprite):
 
     def move(self, screen_width, screen_height, surface, target):
         """to handle motion of a player"""
+        # initialize the attack
+        self.attack_type = 0
+
         # to control the speed of the movement. If they move too fast or slow, change this value.
         player_speed = 10
 
