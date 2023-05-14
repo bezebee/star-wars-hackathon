@@ -1,5 +1,6 @@
 """Class to describe a player of this game"""
 import pygame
+from soundmanager import SoundManager
 pygame.font.init() # Initialize the Pygame font
 
 # Colour variables
@@ -82,6 +83,7 @@ class Player(pygame.sprite.Sprite) :
         self.animation_list = self.load_images(sprite_sheet, animation_steps)
         self.action = 0  # 0 is idle, 1 is run
         self.frame_index = 0
+        self.sound_manager = SoundManager()
 
     def load_images(self, sprite_sheet, animation_steps):
         """extract images from spritesheet"""
@@ -183,6 +185,10 @@ class Player(pygame.sprite.Sprite) :
         """handles the attack movement 
             not implemented yet
         """
+
+        # play the attack sound fx
+        self.sound_manager.play_luke_attack_sound()
+
 
         # set attacking state to suppress any other movements
         # currently this would just freeze the player
