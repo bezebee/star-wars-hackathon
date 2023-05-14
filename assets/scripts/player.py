@@ -125,7 +125,12 @@ class Player(pygame.sprite.Sprite):
         # ensure that it reads only images that are in the sprite sheet
         if self.frame_index > len(self.animation_list[self.action]):
             self.frame_index = 0
-        self.image = self.animation_list[self.action][int(self.frame_index)]
+            #when the animation is complete, allow to attack again
+            if self.action==1:
+                self.is_attacking = 0
+        img = self.animation_list[self.action][int(self.frame_index)]
+        #flip the image so that the fighters face each other
+        self.image = pygame.transform.flip( img,  self.flip , False)
         pygame.draw.rect(self.image, "red", [0, 0, self.width, self.height], 2)
 
     def set_current_action(self):
@@ -135,10 +140,10 @@ class Player(pygame.sprite.Sprite):
         """
         # depending on the state, set the action parameter to select the corresponding sprite sheet
         if self.is_jumping:
-            self.action = 3
+            self.update_action(3)
         else:
             if self.is_attacking:
-                self.action = 1
+                self.update_action(1)
             elif self.is_blocking:
                 pass # needs to be implemented. The running animation is the 
                         #placeholder currently for this state 
@@ -151,12 +156,21 @@ class Player(pygame.sprite.Sprite):
             elif self.is_falling:
                 pass # needs to be implemented
             elif self.is_running:
-                self.action = 2
+                self.update_action(2)
             else:
-                self.action = 0 # idle state
+                self.update_action(0) # idle state
+
+    def update_action(self, new_action):
+        """helper function to ensure that a new animation starts from beginning"""
+        if new_action != self.action: 
+            self.action = new_action
+            self.frame_index = 0
 
     def move(self, screen_width, screen_height, surface, target, game_over):
         """to handle motion of a player"""
+        # initialize the attack
+        self.attack_type = 0
+
         # to control the speed of the movement. If they move too fast or slow, change this value.
         player_speed = 10
 
@@ -289,7 +303,7 @@ class Player(pygame.sprite.Sprite):
         # currently this would just freeze the player
         # i will not activate the is_attacking for now 
         # but if you want to keep implementing, uncomment the next line
-        #self.is_attacking = True
+        self.is_attacking = True
 
         # create an attacking rectanlge when the player presses attack button
         # the attack is hitting the enemy if that rectange collides
