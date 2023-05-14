@@ -5,6 +5,7 @@ import pygame
 from pygame import mixer
 from sound_manager import SoundManager
 from scene import Scene
+from scene import Scene
 
 mixer.init()
 
@@ -63,7 +64,11 @@ class Main:
         '''get all events that pygame has registered'''
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                return True
+                pygame.quit()
+                quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_p:
+                    self.Pause()
         return False
 
     def update_players(self):
@@ -99,12 +104,16 @@ class Main:
         else:
             # display game over text
             self.display.draw_text("Game Over!", self.count_font, WHITE, self.display.width / 3.5 , self.display.height / 3)
-            self.game_over = False
+            #self.game_over = False
 
-    def Pause():
+    def Pause(self):
         paused = True
 
         while paused:
+            self.display.draw_text("Paused", self.count_font, WHITE, self.display.width / 3.15 , self.display.height / 3)
+            self.display.draw_text("C to Continue!", self.count_font, WHITE, self.display.width / 5 , self.display.height / 1.75)
+            self.display.draw_text("ESC to Quit!", self.count_font, WHITE, self.display.width / 4.75 , self.display.height / 1.25)
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -112,22 +121,15 @@ class Main:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_c:
                         paused = False
-                    elif event.key == pygame.K_q:
+                    elif event.key == pygame.K_ESCAPE:
                         pygame.quit()
+
+            pygame.display.update()
+            
     
-
-    
-    def run(self):
-        '''Function to run the game'''
-
-        # load background image
-        bg_image = self.display.load_image("assets/images/background/background_swamp.png",
-                                            (self.display.width, self.display.height))
-        
-        # load background music
-        self.sound_manager.play_background_music()
-
+    def scene_flow(self):
         intro = True
+        options = False
         #Scene transitions
         while intro:
             scene = Scene()
@@ -139,17 +141,56 @@ class Main:
                     if event.key == pygame.K_RETURN:
                         print("Game started")
                         intro = False
+                    if event.key == pygame.K_o:
+                        options = True
+                        intro = False
+                        print('opening options menu')
                     if event.key == pygame.K_ESCAPE:
                         print("Quit game")
                         intro = False
                         pygame.quit()
                         quit()
             pygame.display.update()
+        
+        while options:
+            scene = Scene()
+            self.display.draw_background(scene.options_menu)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_RETURN:
+                        print("Game started")
+                        intro = True
+                        options =False
+                    if event.key == pygame.K_ESCAPE:
+                        options = False
+                        self.run()
+            pygame.display.update()
+
+    
+    def run(self):
+        '''Function to run the game'''
+        self.scene_flow()
+        # load background image
+        bg_image = self.display.load_image("assets/images/background/background_swamp.png",
+                                            (self.display.width, self.display.height))
+        
+        # load background music
+        self.sound_manager.play_background_music()
+
+        
 
         #infinite game loop until the user clicks on the exit button
         while True:
             if self.handle_events():
                 break
+
+            #for event in pygame.event.get():
+            #    if event.type == pygame.KEYDOWN:
+            #        if event.key == pygame.K_ESCAPE:
+            #            intro = True
+            #            self.display.draw_background(scene.title_img)
 
             #for event in pygame.event.get():
             #    if event.type == pygame.KEYDOWN:

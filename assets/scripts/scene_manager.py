@@ -1,6 +1,14 @@
 import pygame
 from display import Display
-
+#************************
+#this class was abandonded in favour of
+#an implementation found here:
+#
+#PTTGRW- #13 - Scenes and the Game as an Object
+#
+#https://www.youtube.com/watch?v=MFuO3NWEqjE
+#
+#*************************
 """This class is a central scene handler which should acomplish several things.
 It should be able to switch between scenes. This means that it must be able to draw a new scene. 
 
