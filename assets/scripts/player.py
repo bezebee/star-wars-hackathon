@@ -94,11 +94,7 @@ class Player(pygame.sprite.Sprite):
         self.animation_list = self.load_images(sprite_sheet, animation_steps)
         self.action = 0  # 0:idle, 1:attack , 2:run, 3: jump
         self.frame_index = 0
-        self.sound_manager = SoundManager()
-        # just for debugging. This is just to confirm that the second movement (attack) of the luke character gets displayed correctly.
-        if self.name=="Luke Skywalker":
-             self.action = 0
-        print(f"current action : {self.action}")
+        self.sound_manager = SoundManager()    
 
     def load_images(self, sprite_sheet, animation_steps):
         """extract images from spritesheet"""
@@ -127,6 +123,11 @@ class Player(pygame.sprite.Sprite):
             #when the animation is complete, allow to attack again
             if self.action==1:
                 self.is_attacking = 0
+            # in case when Luke is defeated, he should stay lying on the ground.
+            # therefore, we will keep drawing the last frame in that case
+            if self.action==5:
+                self.frame_index = len(self.animation_list[5]) - 1
+
         img = self.animation_list[self.action][int(self.frame_index)]
         #flip the image so that the fighters face each other
         self.image = pygame.transform.flip( img,  self.flip , False)
@@ -144,15 +145,16 @@ class Player(pygame.sprite.Sprite):
             if self.is_attacking:
                 self.update_action(1)
             elif self.is_blocking:
-                pass # needs to be implemented. The running animation is the 
-                        #placeholder currently for this state 
+                self.update_action(6) # blocking state
             elif self.is_winning:
+                self.update_action(4)
                 pass # needs to be implemented
             elif self.is_falling:
-                pass # needs to be implemented
+                self.update_action(5) # falling state
             elif self.is_running:
                 self.update_action(2)
             else:
+                #self.update_action(0) # idle state
                 self.update_action(0) # idle state
 
     def update_action(self, new_action):
