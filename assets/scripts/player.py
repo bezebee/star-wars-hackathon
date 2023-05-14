@@ -94,11 +94,7 @@ class Player(pygame.sprite.Sprite):
         self.animation_list = self.load_images(sprite_sheet, animation_steps)
         self.action = 0  # 0:idle, 1:attack , 2:run, 3: jump
         self.frame_index = 0
-        self.sound_manager = SoundManager()
-        # just for debugging. This is just to confirm that the second movement (attack) of the luke character gets displayed correctly.
-        if self.name=="Luke Skywalker":
-             self.action = 0
-        print(f"current action : {self.action}")
+        self.sound_manager = SoundManager()    
 
     def load_images(self, sprite_sheet, animation_steps):
         """extract images from spritesheet"""
@@ -144,12 +140,16 @@ class Player(pygame.sprite.Sprite):
             if self.is_attacking:
                 self.update_action(1)
             elif self.is_blocking:
-                pass # needs to be implemented. The running animation is the 
-                        #placeholder currently for this state 
+                self.update_action(6) # blocking state
             elif self.is_winning:
+                self.update_action(4)
                 pass # needs to be implemented
             elif self.is_falling:
-                pass # needs to be implemented
+                self.update_action(5) # falling state
+                # needs to be refined once we have defined a victory/defeat state
+                # to ensure that this animation is played only once, 
+                # and not in an infitinite loop like the other animations: 
+                # luke should be lying on the ground constantly.
             elif self.is_running:
                 self.update_action(2)
             else:
