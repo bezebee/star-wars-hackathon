@@ -153,9 +153,8 @@ class Player(pygame.sprite.Sprite):
             elif self.health <= 0:
                 self.health = 0
                 self.is_alive = False
-                # self.action = 6 # death state
-            elif self.is_falling:
                 self.update_action(5) # falling state
+                # self.action = 6 # death state
             elif self.is_running:
                 self.update_action(2)
             else:
@@ -305,7 +304,7 @@ class Player(pygame.sprite.Sprite):
         # currently this would just freeze the player
         # i will not activate the is_attacking for now 
         # but if you want to keep implementing, uncomment the next line
-        self.is_attacking = True
+        #self.is_attacking = True
 
         # create an attacking rectanlge when the player presses attack button
         # the attack is hitting the enemy if that rectange collides
