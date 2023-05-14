@@ -150,7 +150,6 @@ class Player(pygame.sprite.Sprite):
         img = self.animation_list[self.action][int(self.frame_index)]
         #flip the image so that the fighters face each other
         self.image = pygame.transform.flip( img,  self.flip , False)
-        pygame.draw.rect(self.image, "red", [0, 0, self.width, self.height], 2)
 
     def set_current_action(self):
         """
@@ -167,7 +166,6 @@ class Player(pygame.sprite.Sprite):
                 self.update_action(6)  # blocking state
             elif self.is_winning:
                 self.update_action(4)
-                pass  # needs to be implemented
             elif self.health <= 0:
                 self.health = 0
                 self.is_alive = False
@@ -309,6 +307,10 @@ class Player(pygame.sprite.Sprite):
             self.is_running = True
         else:
             self.is_running = False
+        
+        # store victory state
+        if self.is_alive and game_over: 
+            self.is_winning = True
 
     def block(self):
         '''Handles the blocking action'''
