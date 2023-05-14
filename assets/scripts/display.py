@@ -31,6 +31,8 @@ class Display:
 
     def draw_sprite(self, sprite):
         '''Draw sprite'''
+        for player in sprite:
+            player.update()
         sprite.draw(self.screen)
 
     def draw_health_bar(self, bar):

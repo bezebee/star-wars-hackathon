@@ -64,7 +64,7 @@ class Player(pygame.sprite.Sprite) :
         """
         super().__init__()
         self.flip = False
-        self.image = pygame.Surface((32, 32))
+        self.image = pygame.Surface((48, 48))
         self.image.fill( color if color else "lightblue")
         self.rect = self.image.get_rect(center = pos if pos else (200,300))
         self.name= name
@@ -76,10 +76,11 @@ class Player(pygame.sprite.Sprite) :
         self.color = color
         self.update_time = pygame.time.get_ticks
         self.size = data[0]
+        self.image_scale = data[1]
+        self.offset = data[2]
         self.animation_list = self.load_images(sprite_sheet, animation_steps)
-        self.action = 0   # 0 is idle, 1 is run
-        self.frame_index = 0
-        self.image = self.animation_list[self.action][self.frame_index]
+        self.action = 0  # 0 is idle, 1 is run
+        self.frame_index = 0 
 
     def load_images(self, sprite_sheet, animation_steps):
         """extract images from spritesheet"""
@@ -88,15 +89,18 @@ class Player(pygame.sprite.Sprite) :
             temp_img_list = []
             for x in range(animation):
                 temp_img = sprite_sheet.subsurface(x * self.size, y * self.size, self.size, self.size )
-                temp_img_list.append(temp_img)
+                temp_img_list.append(pygame.transform.scale(temp_img, (self.size * self.image_scale, self.size * self.image_scale)))
             animation_list.append(temp_img_list)
         return animation_list
-
-    def update(self, surface):
-        """hanlde animation update image """
-        self.image = self.animation_list[self.action][self.frame_index]
-        surface.blit(self.image, (self.rect.x, self.rect.y))
-
+    
+    def update(self):
+        """add animation to static images from sprite sheet"""
+        self.frame_index += .1
+        # ensure that it reads only images that are in the sprite sheet
+        if self.frame_index > len(self.animation_list[self.action]):
+            self.frame_index = 0
+        self.image = self.animation_list[self.action][int(self.frame_index)]
+        
     def move(self, screen_width, screen_height, surface, target):
         """to handle motion of a player"""
         # to control the speed of the movement. If they move too fast or slow, change this value.
