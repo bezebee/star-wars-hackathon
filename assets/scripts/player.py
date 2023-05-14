@@ -48,6 +48,21 @@ class HealthBar():
                             self.height + self.border_height / 2)
         screen.blit(health_text, text_rect)
 
+        # Draws a blue circle at the left or right of the health bar depending of the player
+        if self.player.name == "Luke Skywalker":
+            circle_pos = (self.width + self.border_width // 2 - 100, self.height + 40)
+            border_width = 2
+            radius = 10
+        else:
+            circle_pos = (self.width + self.border_width // 2 + 100, self.height + 40)
+            border_width = 2
+            radius = 10
+        if self.player.force == 10:
+            pygame.draw.circle(screen, WHITE, circle_pos, radius + border_width, border_width)
+            pygame.draw.circle(screen, BLUE, circle_pos, radius)
+        else:
+            pygame.draw.circle(screen, WHITE, circle_pos, radius + border_width, border_width)
+
 
 class Player(pygame.sprite.Sprite):
     """Describes a player in the fighting game
