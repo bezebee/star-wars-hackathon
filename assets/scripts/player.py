@@ -101,6 +101,7 @@ class Player(pygame.sprite.Sprite) :
         if self.frame_index > len(self.animation_list[self.action]):
             self.frame_index = 0
         self.image = self.animation_list[self.action][int(self.frame_index)]
+        pygame.draw.rect(self.image, "red", [0,0,self.width,self.height], 2)
         
     def move(self, screen_width, screen_height, surface, target):
         """to handle motion of a player"""
