@@ -1,10 +1,10 @@
 
 
-# Star Wars Fighter
+# Luke VS Vader
 
-![Star Wars Fighter](https://res.cloudinary.com/dugnokxox/image/upload/v1683981748/Untitled_design_3_1_bin4w8.png)
+![Luke VS Vader](https://res.cloudinary.com/dugnokxox/image/upload/v1683981748/Untitled_design_3_1_bin4w8.png)
 
-Star Wars Fighter is a Python/Pygame-based game inspired by the classic Street Fighter series, set in the iconic Star Wars universe. In this game, players can engage in intense battles between legendary characters such as Luke Skywalker and Darth Vader.
+Luke VS Vader is a Python/Pygame-based game inspired by the classic Street Fighter series, set in the iconic Star Wars universe. In this game, players can engage in intense battles between legendary characters such as Luke Skywalker and Darth Vader.
 
 ## About the Game
 
@@ -33,7 +33,7 @@ Star Wars Street Fighter is designed for players aged 15 and above. It captures 
 # Design
 
 ### Typography
-The game development for the star-wars-hackathon utilized the Bungee and Nunito font.
+The game development for the this project utilized the Bungee and Nunito font.
 
 
 | Bungee                                         | Nunito                                          |
