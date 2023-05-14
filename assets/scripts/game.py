@@ -3,6 +3,7 @@ from player import Player, HealthBar
 from display import Display
 import pygame
 from pygame import mixer
+from soundmanager import SoundManager
 
 mixer.init()
 
@@ -15,6 +16,8 @@ BLACK = (0, 0, 0)
 class Main:
     '''Class for main game loop'''
     def __init__(self):
+        # initialise sound manager
+        self.sound_manager = SoundManager()
         # display dimensions and name
         self.display = Display(640, 480, "Luke VS Vader")
         # this clock will be used in the game loop to limit the the frame rate to 60.
@@ -87,6 +90,9 @@ class Main:
         # load background image
         bg_image = self.display.load_image("assets/images/background/background_swamp.png",
                                             (self.display.width, self.display.height))
+        
+        # load background music
+        self.sound_manager.play_background_music()
 
         #infinite game loop until the user clicks on the exit button
         while True:
