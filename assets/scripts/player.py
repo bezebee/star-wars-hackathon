@@ -77,6 +77,9 @@ class Player(pygame.sprite.Sprite):
         self.is_jumping = False
         self.is_attacking = False
         self.is_blocking = False # check if player is blocking
+        self.is_winning = False
+        self.is_falling = False
+        self.is_running = False
         self.blocking_start_time = 0 # controls blocking cooldown time
         self.attack_type = 0
         self.attack_cooldown = 10 # controls attack type cooldown
@@ -112,12 +115,39 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         """add animation to static images from sprite sheet"""
+        # determine what kind of action the player is doing at the moment 
+        # quick debuggin : since we have only the sheet for luke ready, only animate luke
+        # for the moment 
+        if self.name == "Luke Skywalker":
+            self.set_current_action()
         self.frame_index += .1
         # ensure that it reads only images that are in the sprite sheet
         if self.frame_index > len(self.animation_list[self.action]):
             self.frame_index = 0
         self.image = self.animation_list[self.action][int(self.frame_index)]
         pygame.draw.rect(self.image, "red", [0, 0, self.width, self.height], 2)
+
+    def set_current_action(self):
+        """
+        based on the current state of the player, set action variable to change between animation types
+        0 : idle, 1: attack , 3: running, 4: jumping
+        """
+        if self.is_jumping:
+            self.action = 3
+        elif self.is_attacking:
+            self.action = 1
+        elif self.is_blocking:
+            self.action = 2
+            pass # needs to be implemented. The running animation is the 
+                 #placeholder currently for this state 
+        elif self.is_winning:
+            pass # needs to be implemented
+        elif self.is_falling:
+            pass # needs to be implemented
+        elif self.is_running:
+            pass # needs to be implemented
+        else:
+            self.action = 0 # idle state
 
     def move(self, screen_width, screen_height, surface, target):
         """to handle motion of a player"""
@@ -149,14 +179,11 @@ class Player(pygame.sprite.Sprite):
                 if not self.is_blocking:  # Stop all movements if blocking
                     if key[pygame.K_a]:
                         delta_x = -player_speed
-                        self.action = 2
                     if key[pygame.K_d]:
                         delta_x = player_speed
-                        self.action = 2
                     if key[pygame.K_w] and not self.is_jumping:
                         self.velocity_y = -30  # jumping of the players.
                         self.is_jumping = True
-                        self.action = 3
                         # play the jump sound fx
                         self.sound_manager.play_luke_jump_sound()
                     if key[pygame.K_r] and self.attack_cooldown == 10:  # attack type 1
@@ -250,7 +277,7 @@ class Player(pygame.sprite.Sprite):
         # set attacking state to suppress any other movements
         # currently this would just freeze the player
         # i will not activate the is_attacking for now 
-        # but if you want to keep implementing, uncomment the next lineß
+        # but if you want to keep implementing, uncomment the next line
         #self.is_attacking = True
 
         # create an attacking rectanlge when the player presses attack button
