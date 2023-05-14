@@ -3,7 +3,7 @@ from player import Player, HealthBar
 from display import Display
 import pygame
 from pygame import mixer
-from soundmanager import SoundManager
+from sound_manager import SoundManager
 
 mixer.init()
 
