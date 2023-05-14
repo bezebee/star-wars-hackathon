@@ -150,7 +150,6 @@ class Player(pygame.sprite.Sprite):
         img = self.animation_list[self.action][int(self.frame_index)]
         #flip the image so that the fighters face each other
         self.image = pygame.transform.flip( img,  self.flip , False)
-        pygame.draw.rect(self.image, "red", [0, 0, self.width, self.height], 2)
 
     def set_current_action(self):
         """
