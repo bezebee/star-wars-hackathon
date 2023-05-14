@@ -189,7 +189,6 @@ class Player(pygame.sprite.Sprite):
                         self.sound_manager.play_luke_jump_sound()
                     if key[pygame.K_r] and self.attack_cooldown == 10:  # attack type 1
                         self.attack_type = 1 # attack type
-                        self.action = 1
                         self.attack(surface, target) # calls attack function
                         self.attack_cooldown = 0 # sets cooldown to 0
                         self.attack_cooldown = pygame.time.get_ticks()  # Start a timer
