@@ -64,7 +64,8 @@ class Main:
         '''get all events that pygame has registered'''
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                return True
+                pygame.quit()
+                quit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_p:
                     self.Pause()
@@ -103,7 +104,7 @@ class Main:
         else:
             # display game over text
             self.display.draw_text("Game Over!", self.count_font, WHITE, self.display.width / 3.5 , self.display.height / 3)
-            self.game_over = False
+            #self.game_over = False
 
     def Pause(self):
         paused = True

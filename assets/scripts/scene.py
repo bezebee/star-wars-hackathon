@@ -8,3 +8,5 @@ class Scene:
         self.game_bg = pygame.image.load('assets/images/background/background_swamp.png')
         self.game_over = pygame.image.load('assets/images/screens/game-over.png')
         self.options_menu = pygame.image.load('assets/images/screens/How To Play.png')
+
+        self.game_over = pygame.image.load('assets/images/screens/game-over.png')
