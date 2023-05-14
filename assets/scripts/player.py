@@ -167,7 +167,6 @@ class Player(pygame.sprite.Sprite):
                 self.update_action(6)  # blocking state
             elif self.is_winning:
                 self.update_action(4)
-                pass  # needs to be implemented
             elif self.health <= 0:
                 self.health = 0
                 self.is_alive = False
@@ -309,6 +308,10 @@ class Player(pygame.sprite.Sprite):
             self.is_running = True
         else:
             self.is_running = False
+        
+        # store victory state
+        if self.is_alive and game_over: 
+            self.is_winning = True
 
     def block(self):
         '''Handles the blocking action'''
