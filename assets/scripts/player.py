@@ -156,12 +156,15 @@ class Player(pygame.sprite.Sprite):
                         self.is_jumping = True
                         # play the jump sound fx
                         self.sound_manager.play_luke_jump_sound()
-                    if key[pygame.K_r]:  # attacking of the player
+                    if key[pygame.K_r]:  # attack type 1
                         self.attack_type = 1
                         self.action = 1
                         self.attack(surface, target)
                         # play the attack sound fx
                         self.sound_manager.play_luke_attack_sound()
+                    if key[pygame.K_f]:  # attack type 2
+                        self.attack_type = 2
+                        self.attack(surface, target)  
                     if key[pygame.K_q] and not self.is_blocking:
                         self.block() # blocks an attack when "q" is pressed"
                     
@@ -176,11 +179,14 @@ class Player(pygame.sprite.Sprite):
                         self.is_jumping = True
                         # play the jump sound fx
                         self.sound_manager.play_darth_jump_sound()
-                    if key[pygame.K_RSHIFT]: # attacking of the player
+                    if key[pygame.K_RSHIFT]: # attack type 1 
                         self.attack_type = 1
                         self.attack(surface, target)
                         # play the attack sound fx
                         self.sound_manager.play_darth_attack_sound()
+                    if key[pygame.K_RCTRL]:  # attack type 2
+                        self.attack_type = 2
+                        self.attack(surface, target)
                     if key[pygame.K_SLASH] and not self.is_blocking:
                         self.block() # blocks an attack when "/" is pressed"
 
@@ -245,6 +251,7 @@ class Player(pygame.sprite.Sprite):
             if target.health > 0:  # Reduces health if is bigger than 0
                 if target.is_blocking is False:  # only deals damage if target isn't blocking
                     target.health -= 1
-
+                elif self.attack_type == 2: # attack type 2 will deal damage even when blocking
+                    target.health -= 1
         pygame.draw.rect(surface, "green", attacking_rect)
         return
