@@ -30,10 +30,12 @@ https://www.youtube.com/watch?v=sDL7P2Jhlh8
 ***
 """
 screen_width= 640
-screen_height = 480 
+screen_height = 480
+title_img = pygame.image.load('assets/images/screens/game-start-v2.png')
+game_bg = pygame.image.load('assets/images/background/background_swamp.png')
+
 #parent class from which each scene can inherit methods
 class Scene:
-    
 
     def __init__(self):
         self.next = self
@@ -74,7 +76,6 @@ class TitleScene(Scene):
     def __init__(self):
         super().__init__()
 
-       
     def onEnter(self):
         print('Now entering Main Menu...')
 
@@ -88,15 +89,13 @@ class TitleScene(Scene):
             sm.push(GameScene())
         elif keys[pygame.K_ESCAPE]:
             pygame.quit()
-            
-    def update_scene(self, sm, screen):
-        Display.update(screen)
-    def draw_scene(self, sm, screen):
-        self.display = Display(screen_width, screen_height, 'Luke Vs Vader')
-        screen = self.display.load_image('assets/images/background/background_desert.png', (screen_width, screen_height))
-        self.display.draw_background(screen)
-        self.display.update()
 
+    def draw_scene(self, sm, screen):
+        screen= pygame.display.set_mode((screen_width, screen_height))
+        bg_image = title_img
+        bg_image = pygame.transform.scale(bg_image, (screen_width, screen_height))
+        screen.blit(bg_image, (0, 0))
+        pygame.display.update()
 
     
 class GameScene(Scene):
@@ -112,13 +111,14 @@ class GameScene(Scene):
             Scene.Pause()
         #return to title screen
         elif keys[pygame.K_q]:
-            sm.push(TitleScene())
+            sm.pop()
 
     def draw_scene(self, sm, screen):
-        self.display = Display(640, 480, 'Luke Vs Vader')
-        bg_image = self.display.load_image('assets/images/background/background_swamp.png', (screen_width, screen_height))
-        self.display.draw_background(bg_image)
-        self.display.update()
+        screen= pygame.display.set_mode((screen_width, screen_height))
+        bg_image = game_bg
+        bg_image = pygame.transform.scale(bg_image, (screen_width, screen_height))
+        screen.blit(bg_image, (0, 0))
+        pygame.display.update()
    
 class GameOver(Scene):
     def onEnter(self):
@@ -135,9 +135,9 @@ class GameOver(Scene):
         #return to title screen
         elif keys[pygame.K_q]:
             sm.push(TitleScene())
-    def update_scene(self, scene_manager):
+    def update_scene(self, sm):
         print('will handle GAME OVER logic')
-    def draw_scene(self, scene_manager):
+    def draw_scene(self, sm):
         print('renders GAME OVER scene')
 
 
@@ -161,8 +161,8 @@ class SceneManager:
         if len(self.scenes) > 0:#check that a scene exists
             self.scenes[-1].input(self)
     #to handle scene logic
-    def update_scene(self, screen):
-        self.scenes[-1].update_scene(self, screen)
+    def update_scene(self):
+        self.scenes[-1].update_scene(self)
     #to draw the scene
     def draw_scene(self, screen):
         self.scenes[-1].draw_scene(self, screen)
