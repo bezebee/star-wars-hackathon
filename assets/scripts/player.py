@@ -155,7 +155,7 @@ class Player(pygame.sprite.Sprite):
                         self.velocity_y = -30  # jumping of the players.
                         self.is_jumping = True
                         # play the jump sound fx
-                    self.sound_manager.play_luke_jump_sound()
+                        self.sound_manager.play_luke_jump_sound()
                     if key[pygame.K_r]:  # attacking of the player
                         self.attack_type = 1
                         self.action = 1

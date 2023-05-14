@@ -35,9 +35,9 @@ class Display:
             player.update()
         sprite.draw(self.screen)
 
-    def draw_health_bar(self, bar):
+    def draw_health_bar(self, healthbar):
         '''Draw health bar'''
-        bar.draw(self.screen)
+        healthbar.draw(self.screen)
 
     def update(self):
         '''Update display'''
