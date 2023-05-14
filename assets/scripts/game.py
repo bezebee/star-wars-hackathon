@@ -21,15 +21,15 @@ class Main:
         # initialise sound manager
         self.sound_manager = SoundManager()
         # display dimensions and name
-        self.display = Display(640, 480, "Luke VS Vader")
+        self.display = Display(640, 480, "Lightsaber Battle")
         # this clock will be used in the game loop to limit the the frame rate to 60.
         self.clock = pygame.time.Clock()
         # add first player to the game.
         # load fighters spritesheet
-        luke_sheet = self.display.load_image("assets/images/luke/Sprites/Frame-four-movements-49x72.png")
+        luke_sheet = self.display.load_image("assets/images/luke/Sprites/Frame-six-movements-49x72.png")
         darth_sheet = self.display.load_image("assets/images/darth/Sprites/idle.png")
         # define number of steps in each animation
-        LUKE_ANIMATION_STEPS = [7, 4, 8, 4]
+        LUKE_ANIMATION_STEPS = [7, 4, 8, 4, 8, 6, 6]
         DARTH_ANIMATION_STEPS = [ 8 ]
         # define the scaling of the images from the sprite sheet to match the rectangle size
         LUKE_SCALE = 2
@@ -56,6 +56,8 @@ class Main:
         self.intro_count = 3
         # update last count
         self.last_count_update = pygame.time.get_ticks()
+        # define game over
+        self.game_over = False
 
     def handle_events(self):
         '''get all events that pygame has registered'''
@@ -66,11 +68,11 @@ class Main:
 
     def update_players(self):
         '''handle the movement of both players'''
-        # luke gets vader as target assigned by last parameter
-        # vader gets luke as target assigned by last parameter
+        # luke gets vader as target assigned by second last parameter
+        # vader gets luke as target assigned by second last parameter
         for luke, vader in zip(self.player_one, self.player_two):
-            luke.move(self.display.width, self.display.height, self.display.screen, vader)
-            vader.move(self.display.width, self.display.height, self.display.screen, luke)
+            luke.move(self.display.width, self.display.height, self.display.screen, vader, self.game_over)
+            vader.move(self.display.width, self.display.height, self.display.screen, luke, self.game_over)
     
     def update_countdown(self):
         '''Handle updating the game countdown'''
@@ -80,11 +82,24 @@ class Main:
             self.update_players()
         else:
             # display count timer
-            self.display.draw_text(str(self.intro_count), self.count_font, BLACK, self.display.width / 2, self.display.height / 3)
+            self.display.draw_text(str(self.intro_count), self.count_font, WHITE, self.display.width / 2, self.display.height / 3)
             # update count timer
             if (pygame.time.get_ticks() - self.last_count_update) >= 1000:
                 self.intro_count -= 1
                 self.last_count_update = pygame.time.get_ticks()
+
+    def check_game_over(self):
+        '''Check for game over'''
+        # check for player defeat
+        if self.game_over == False:
+            if self.player_one.sprite.is_alive == False:
+                self.game_over = True
+            elif self.player_two.sprite.is_alive == False:
+                self.game_over = True
+        else:
+            # display game over text
+            self.display.draw_text("Game Over!", self.count_font, WHITE, self.display.width / 3.5 , self.display.height / 3)
+            self.game_over = False
 
     def Pause():
         paused = True
@@ -148,6 +163,7 @@ class Main:
             self.update_countdown() # load function that handles countdown at the start of the game
             self.display.draw_sprite(self.player_one)# loads player one
             self.display.draw_sprite(self.player_two)# loads player two
+            self.check_game_over() # check for game over
             self.display.update()# update display
             self.clock.tick(60)# start clock
 
