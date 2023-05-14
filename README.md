@@ -1,8 +1,8 @@
-# Code Trooper
+# LightSaber Battles
 
-![Code Trooper](https://res.cloudinary.com/dugnokxox/image/upload/v1683981748/Untitled_design_3_1_bin4w8.png)
+![LightSaber Battles](https://res.cloudinary.com/dugnokxox/image/upload/v1683981748/Untitled_design_3_1_bin4w8.png)
 
-Get ready for an electrifying battle in the heart of the swamp world of Dagobah in Code Trooper, the thrilling Python/Pygame-based game inspired by the legendary Street Fighter series! Immerse yourself in the iconic Star Wars universe and experience the ultimate showdown between the galaxy's greatest heroes and villains. Take control of legendary characters like the heroic Luke Skywalker and the infamous Darth Vader, engage in intense, heart-pumping battles that will keep you on the edge of your seat! With Code Trooper, you'll feel the adrenaline rush as you unleash your inner warrior and fight for glory in the most epic battles of all time. Don't miss your chance to join the action and become the ultimate Code Trooper champion!
+Get ready for an electrifying battle in the heart of the swamp world of Dagobah in LightSaber Battles, the thrilling Python/Pygame-based game inspired by the legendary Street Fighter series! Immerse yourself in the iconic Star Wars universe and experience the ultimate showdown between the galaxy's greatest heroes and villains. Take control of legendary characters like the heroic Luke Skywalker and the infamous Darth Vader, engage in intense, heart-pumping battles that will keep you on the edge of your seat! With LightSaber Battles, you'll feel the adrenaline rush as you unleash your inner warrior and fight for glory in the most epic battles of all time. Don't miss your chance to join the action and become the ultimate LightSaber Battle champion!
 
 ---
 
@@ -34,7 +34,7 @@ Code Trooper offers a streamlined control scheme that is easy to learn and maste
 
 ![controls](assets/readme/How%20To%20Play.png)
 
-### **Luke Controls**
+### **Luke Skywalker Controls**
 
 | LEFT  | RIGHT | JUMP  | ATTACK | BLOCK | FORCE |
 | :---: | :---: | :---: | :----: | :---: | :---: |
@@ -100,13 +100,13 @@ The game development for the this project utilized the Bungee and Nunito font.
 
 ### Wireframes
 
-| Wireframe Options                                         | Wireframe Game Start                                            | Wireframe Countdown 3                                             |
-| --------------------------------------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------------- |
-| ![Wireframe Options](assets/readme/wireframe-options.png) | ![Wireframe Game Start](assets/readme/wireframe-game-start.png) | ![Wireframe Countdown 3](assets/readme/wireframe-countdown-3.png) |
+| Mockup Options                                         | Mockup Game Start                                            | Mockup Countdown 3                                             |
+| ------------------------------------------------------ | ------------------------------------------------------------ | -------------------------------------------------------------- |
+| ![Mockup Options](assets/readme/wireframe-options.png) | ![Mockup Game Start](assets/readme/wireframe-game-start.png) | ![Mockup Countdown 3](assets/readme/wireframe-countdown-3.png) |
 
-| Wireframe Countdown 2                                             | Wireframe Countdown 1                                             | Wireframe Countdown Fight                                                 |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| ![Wireframe Countdown 2](assets/readme/wireframe-countdown-2.png) | ![Wireframe Countdown 1](assets/readme/wireframe-countdown-1.png) | ![Wireframe Countdown Fight](assets/readme/wireframe-countdown-fight.png) |
+| Mockup Countdown 2                                             | Mockup Countdown 1                                             | Mockup Countdown Fight                                                 |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| ![Mockup Countdown 2](assets/readme/wireframe-countdown-2.png) | ![Mockup Countdown 1](assets/readme/wireframe-countdown-1.png) | ![Mockup Countdown Fight](assets/readme/wireframe-countdown-fight.png) |
 
 | Wireframe Game Over |
 | ------------------- |
