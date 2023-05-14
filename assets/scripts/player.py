@@ -147,7 +147,6 @@ class Player(pygame.sprite.Sprite):
         img = self.animation_list[self.action][int(self.frame_index)]
         #flip the image so that the fighters face each other
         self.image = pygame.transform.flip( img,  self.flip , False)
-        pygame.draw.rect(self.image, "red", [0, 0, self.width, self.height], 2)
 
     def set_current_action(self):
         """
@@ -340,5 +339,4 @@ class Player(pygame.sprite.Sprite):
                         target.health -= 10 # attack type 2 deals 10 of damage
                 elif self.attack_type == 2: # attack type 2 will deal damage even when blocking
                     target.health -= 20 # if blocking attack type 2 deals double damage
-        pygame.draw.rect(surface, "green", attacking_rect)
         return
