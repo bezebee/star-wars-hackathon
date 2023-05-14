@@ -4,7 +4,7 @@ from display import Display
 import pygame
 from pygame import mixer
 from sound_manager import SoundManager
-import scene_manager
+from scene import Scene
 
 mixer.init()
 
@@ -18,9 +18,6 @@ class Main:
     '''Class for main game loop'''
     def __init__(self):
         
-        self.sceneManager = scene_manager.SceneManager()
-        self.mainMenu = scene_manager.TitleScene()
-        self.sceneManager.push(self.mainMenu)
         # initialise sound manager
         self.sound_manager = SoundManager()
         # display dimensions and name
@@ -89,6 +86,22 @@ class Main:
                 self.intro_count -= 1
                 self.last_count_update = pygame.time.get_ticks()
 
+    def Pause():
+        paused = True
+
+        while paused:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_c:
+                        paused = False
+                    elif event.key == pygame.K_q:
+                        pygame.quit()
+    
+
+    
     def run(self):
         '''Function to run the game'''
 
@@ -99,12 +112,35 @@ class Main:
         # load background music
         self.sound_manager.play_background_music()
 
+        intro = True
+        #Scene transitions
+        while intro:
+            scene = Scene()
+            self.display.draw_background(scene.title_img)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_RETURN:
+                        print("Game started")
+                        intro = False
+                    if event.key == pygame.K_ESCAPE:
+                        print("Quit game")
+                        intro = False
+                        pygame.quit()
+                        quit()
+            pygame.display.update()
+
         #infinite game loop until the user clicks on the exit button
         while True:
             if self.handle_events():
                 break
-            #self.sceneManager.input()
-            #self.sceneManager.draw_scene(self.display)
+
+            #for event in pygame.event.get():
+            #    if event.type == pygame.KEYDOWN:
+            #        if event.key == pygame.K_ESCAPE:
+            #            intro = True
+            #            self.display.draw_background(scene.title_img)
 
             self.display.draw_background(bg_image)# load background image
             self.display.draw_health_bar(self.health_bar_one)# load health bar player one
