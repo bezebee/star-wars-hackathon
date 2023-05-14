@@ -76,13 +76,15 @@ class Player(pygame.sprite.Sprite):
         self.velocity_y = 0
         self.is_jumping = False
         self.is_attacking = False
-        self.is_blocking = False
+        self.is_blocking = False # check if player is blocking
         self.is_winning = False
         self.is_falling = False
         self.is_running = False
-        self.blocking_start_time = 0
+        self.blocking_start_time = 0 # controls blocking cooldown time
         self.attack_type = 0
+        self.attack_cooldown = 10 # controls attack type cooldown
         self.health = 100
+        self.force = 10 # controls attack type cooldown
         self.color = color
         self.update_time = pygame.time.get_ticks
         self.height = data[0]
@@ -185,14 +187,19 @@ class Player(pygame.sprite.Sprite):
                         self.is_jumping = True
                         # play the jump sound fx
                         self.sound_manager.play_luke_jump_sound()
-                    if key[pygame.K_r]:  # attack type 1
-                        self.attack_type = 1
-                        self.attack(surface, target)
+                    if key[pygame.K_r] and self.attack_cooldown == 10:  # attack type 1
+                        self.attack_type = 1 # attack type
+                        self.action = 1
+                        self.attack(surface, target) # calls attack function
+                        self.attack_cooldown = 0 # sets cooldown to 0
+                        self.attack_cooldown = pygame.time.get_ticks()  # Start a timer
                         # play the attack sound fx
                         self.sound_manager.play_luke_attack_sound()
-                    if key[pygame.K_f]:  # attack type 2
-                        self.attack_type = 2
-                        self.attack(surface, target)  
+                    if key[pygame.K_f] and self.force == 10:  # attack type 2
+                        self.attack_type = 2 # attack type
+                        self.attack(surface, target) #calls attack function 
+                        self.force = 0 # sets force to 0
+                        self.force = pygame.time.get_ticks()  # Start a timer
                     if key[pygame.K_q] and not self.is_blocking:
                         self.block() # blocks an attack when "q" is pressed"
                     
@@ -207,14 +214,18 @@ class Player(pygame.sprite.Sprite):
                         self.is_jumping = True
                         # play the jump sound fx
                         self.sound_manager.play_darth_jump_sound()
-                    if key[pygame.K_RSHIFT]: # attack type 1 
-                        self.attack_type = 1
-                        self.attack(surface, target)
+                    if key[pygame.K_RSHIFT] and self.attack_cooldown == 10: # attack type 1 
+                        self.attack_type = 1 # attack type
+                        self.attack(surface, target) #calls attack function
+                        self.attack_cooldown = 0 #sets cooldown to sero
+                        self.attack_cooldown = pygame.time.get_ticks()  # Start a timer
                         # play the attack sound fx
                         self.sound_manager.play_darth_attack_sound()
-                    if key[pygame.K_RCTRL]:  # attack type 2
-                        self.attack_type = 2
-                        self.attack(surface, target)
+                    if key[pygame.K_RCTRL] and self.force == 10:  # attack type 2
+                        self.attack_type = 2 #attack type
+                        self.attack(surface, target)# calls atack fucntion
+                        self.force = 0 #set force to zero
+                        self.force = pygame.time.get_ticks()  # Start a timer
                     if key[pygame.K_SLASH] and not self.is_blocking:
                         self.block() # blocks an attack when "/" is pressed"
 
@@ -222,7 +233,12 @@ class Player(pygame.sprite.Sprite):
             # checks if more than 1 second has passed since blocking
             if current_time - self.blocking_start_time >= 1000:
                 self.is_blocking = False  # Changes blocking to false
-                    
+            # checks if more than 15 second has passed since using the force
+            if current_time - self.force >= 15000:
+                self.force = 10
+            # checks if more than 1 second has passed since attacking
+            if current_time - self.attack_cooldown >= 1000:
+                self.attack_cooldown = 10            
 
         # reduce velocity each frame so that jumping slows down and eventually reverses
         self.velocity_y += gravity
@@ -284,8 +300,11 @@ class Player(pygame.sprite.Sprite):
             self.sound_manager.play_hit_sound()
             if target.health > 0:  # Reduces health if is bigger than 0
                 if target.is_blocking is False:  # only deals damage if target isn't blocking
-                    target.health -= 1
+                    if self.attack_type == 1:
+                        target.health -= 5 # attack type 1 deals 5 of damage
+                    elif self.attack_type == 2:
+                        target.health -= 10 # attack type 2 deals 10 of damage
                 elif self.attack_type == 2: # attack type 2 will deal damage even when blocking
-                    target.health -= 1
+                    target.health -= 20 # if blocking attack type 2 deals double damage
         pygame.draw.rect(surface, "green", attacking_rect)
         return
