@@ -21,10 +21,10 @@ class Main:
         self.clock = pygame.time.Clock()
         # add first player to the game.
         # load fighters spritesheet
-        luke_sheet = self.display.load_image("assets/images/luke/Sprites/luke-run.png")
-        darth_sheet = self.display.load_image("assets/images/darth/Sprites/idle-scaled.png")
+        luke_sheet = self.display.load_image("assets/images/luke/Sprites/luke_idle-49px.tiff")
+        darth_sheet = self.display.load_image("assets/images/darth/Sprites/idle.png")
         # define number of steps in each animation
-        LUKE_ANIMATION_STEPS = [ 9 ]
+        LUKE_ANIMATION_STEPS = [6 ]
         DARTH_ANIMATION_STEPS = [ 8 ]
         # define the scaling of the images from the sprite sheet to match the rectangle size
         LUKE_SCALE = 3
@@ -33,8 +33,8 @@ class Main:
         LUKE_OFFSET = [ 250, 250]
         DARTH_OFFSET = [ 250, 250]
         #define sizes of the indivdual images of the sprite sheet
-        LUKE_DATA = [48, LUKE_SCALE, LUKE_OFFSET]
-        DARTH_DATA = [48, DARTH_SCALE, DARTH_OFFSET]
+        LUKE_DATA = [49, 45, LUKE_SCALE, LUKE_OFFSET]
+        DARTH_DATA = [85, 48, DARTH_SCALE, DARTH_OFFSET]
         # The use of a GroupSingle was advised to handle collisions between players
         self.player_one = pygame.sprite.GroupSingle()
         self.player_one.add(Player((200, 300), "blue", "Luke Skywalker",LUKE_DATA, luke_sheet, LUKE_ANIMATION_STEPS))

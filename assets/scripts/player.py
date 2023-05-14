@@ -75,12 +75,13 @@ class Player(pygame.sprite.Sprite) :
         self.health = 100
         self.color = color
         self.update_time = pygame.time.get_ticks
-        self.size = data[0]
-        self.image_scale = data[1]
-        self.offset = data[2]
+        self.height = data[0]
+        self.width = data[1]
+        self.image_scale = data[2]
+        self.offset = data[3]
         self.animation_list = self.load_images(sprite_sheet, animation_steps)
         self.action = 0  # 0 is idle, 1 is run
-        self.frame_index = 0 
+        self.frame_index = 0
 
     def load_images(self, sprite_sheet, animation_steps):
         """extract images from spritesheet"""
@@ -88,8 +89,8 @@ class Player(pygame.sprite.Sprite) :
         for y, animation in enumerate(animation_steps):
             temp_img_list = []
             for x in range(animation):
-                temp_img = sprite_sheet.subsurface(x * self.size, y * self.size, self.size, self.size )
-                temp_img_list.append(pygame.transform.scale(temp_img, (self.size * self.image_scale, self.size * self.image_scale)))
+                temp_img = sprite_sheet.subsurface(x * self.width, y * self.height, self.width, self.height )
+                temp_img_list.append(pygame.transform.scale(temp_img, (self.width * self.image_scale, self.width * self.image_scale)))
             animation_list.append(temp_img_list)
         return animation_list
     
