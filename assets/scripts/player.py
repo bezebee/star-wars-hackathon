@@ -87,12 +87,12 @@ class Player(pygame.sprite.Sprite):
         self.image_scale = data[2]
         self.offset = data[3]
         self.animation_list = self.load_images(sprite_sheet, animation_steps)
-        self.action = 0  # 0:idle, 1:attack , 2:run 
+        self.action = 0  # 0:idle, 1:attack , 2:run, 3: jump
         self.frame_index = 0
         self.sound_manager = SoundManager()
         # just for debugging. This is just to confirm that the second movement (attack) of the luke character gets displayed correctly.
         if self.name=="Luke Skywalker":
-             self.action = 0   
+             self.action = 0
         print(f"current action : {self.action}")
 
     def load_images(self, sprite_sheet, animation_steps):
@@ -154,6 +154,7 @@ class Player(pygame.sprite.Sprite):
                     if key[pygame.K_w] and not self.is_jumping:
                         self.velocity_y = -30  # jumping of the players.
                         self.is_jumping = True
+                        self.action = 3
                         # play the jump sound fx
                         self.sound_manager.play_luke_jump_sound()
                     if key[pygame.K_r]:  # attacking of the player
