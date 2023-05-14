@@ -14,6 +14,12 @@ The game offers an MVP (Minimum Viable Product) version, featuring captivating f
 
 ---
 
+## Target Audience
+
+Star Wars Street Fighter is designed for players aged 15 and above. It captures the essence of the Star Wars universe while acknowledging that the game may contain violent content. Please exercise discretion when sharing with younger audiences.
+
+---
+
 ## Game Mechanics
 
 ---
@@ -50,11 +56,13 @@ Code Trooper offers a streamlined control scheme that is easy to learn and maste
 | **Arrow Left** | **Arrow Right** | **Arrow Up** | **Keypad 1** | **Keypad 0** | **Keypad 2** |
 |                |                 |              |              |              |              |
 
----
+### Testing WIP
 
-## Target Audience
-
-Star Wars Street Fighter is designed for players aged 15 and above. It captures the essence of the Star Wars universe while acknowledging that the game may contain violent content. Please exercise discretion when sharing with younger audiences.
+| PAUSE |
+| :---: |
+|       |
+| **P** |
+|       |
 
 ---
 
@@ -130,7 +138,7 @@ The game development for the this project utilized the Bungee and Nunito font.
 | ------------------------------------------------------------------ | ------------------------------------------------------ |
 | ![Design Countdown Fight](assets/readme/design-countdownfight.png) | ![Design ingame fight](assets/readme/design-fight.png) |
 
-| You Win!                                        | You Lose!                                         |
+| You Won!                                        | You Lost!                                         |
 | ----------------------------------------------- | ------------------------------------------------- |
 | ![Design You win](assets/readme/design-win.png) | ![Design you lose](assets/readme/design-lost.png) |
 
@@ -189,9 +197,35 @@ The game development for the this project utilized the Bungee and Nunito font.
   </p>
 </details>
 
-# Media
+---
+
+# Testing
+
+## Bugs
+
+    We are 100% bugg free! ;)
+
+## Fixed Bugs
+
+    Flickering of Game Over Screen
 
 # Credits
+
+## Media
+
+### Code
+
+- Code inspiration from [Coding With Russ(YouTube)](https://www.youtube.com/watch?v=s5bd9KMSSW4)
+
+### Sprites
+
+### Images
+
+### Audio
+
+- Sound FX created in [Arturia Pigments](https://www.arturia.com/products/software-instruments/pigments/overview)
+- Background music from [Darth Vader(YouTube)](https://youtu.be/M6PIZ0kSgNw)
+- Background music from [Luke Skywalker(YouTube)](https://youtu.be/5hIBHbtGb-A)
 
 # Deployment
 
