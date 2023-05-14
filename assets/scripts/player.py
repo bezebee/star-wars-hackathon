@@ -84,6 +84,9 @@ class Player(pygame.sprite.Sprite) :
         self.action = 0  # 0 is idle, 1 is run
         self.frame_index = 0
         self.sound_manager = SoundManager()
+        # just for debugging. This is just to confirm that the second movement (attack) of the luke character gets displayed correctly.
+        if self.name=="Luke Skywalker":
+            self.action = 1
 
     def load_images(self, sprite_sheet, animation_steps):
         """extract images from spritesheet"""
@@ -194,7 +197,7 @@ class Player(pygame.sprite.Sprite) :
         # set attacking state to suppress any other movements
         # currently this would just freeze the player
         # i will not activate the is_attacking for now 
-        # but if you want to keep implementing, uncomment the next line 
+        # but if you want to keep implementing, uncomment the next lineß
         #self.is_attacking = True
 
         # create an attacking rectanlge when the player presses attack button
