@@ -24,7 +24,7 @@ class Main:
         # initialise sound manager
         self.sound_manager = SoundManager()
         # display dimensions and name
-        self.display = Display(640, 480, "Luke VS Vader")
+        self.display = Display(640, 480, "Lightsaber Battle")
         # this clock will be used in the game loop to limit the the frame rate to 60.
         self.clock = pygame.time.Clock()
         # add first player to the game.
@@ -83,7 +83,7 @@ class Main:
             self.update_players()
         else:
             # display count timer
-            self.display.draw_text(str(self.intro_count), self.count_font, BLACK, self.display.width / 2, self.display.height / 3)
+            self.display.draw_text(str(self.intro_count), self.count_font, WHITE, self.display.width / 2, self.display.height / 3)
             # update count timer
             if (pygame.time.get_ticks() - self.last_count_update) >= 1000:
                 self.intro_count -= 1
