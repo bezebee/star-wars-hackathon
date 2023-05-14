@@ -131,7 +131,7 @@ class Player(pygame.sprite.Sprite):
     def set_current_action(self):
         """
         based on the current state of the player, set action variable to change between animation types
-        0 : idle, 1: attack , 3: running, 4: jumping
+        0 : idle, 1: attack , 3: running, 4: jumping, 6: death
         """
         # depending on the state, set the action parameter to select the corresponding sprite sheet
         if self.is_jumping:
@@ -144,6 +144,10 @@ class Player(pygame.sprite.Sprite):
                         #placeholder currently for this state 
             elif self.is_winning:
                 pass # needs to be implemented
+            elif self.health <= 0:
+                self.health = 0
+                self.is_alive = False
+                # self.action = 6 # death state
             elif self.is_falling:
                 pass # needs to be implemented
             elif self.is_running:
@@ -151,7 +155,7 @@ class Player(pygame.sprite.Sprite):
             else:
                 self.action = 0 # idle state
 
-    def move(self, screen_width, screen_height, surface, target):
+    def move(self, screen_width, screen_height, surface, target, game_over):
         """to handle motion of a player"""
         # to control the speed of the movement. If they move too fast or slow, change this value.
         player_speed = 10
@@ -170,9 +174,9 @@ class Player(pygame.sprite.Sprite):
         # get all keypresses
         key = pygame.key.get_pressed()
 
-        # for now, don't do any movements while attacking.
+        # for now, don't do any movements while attacking or if dead or if game over.
         # Can be refined later
-        if not self.is_attacking and self.is_alive:
+        if not self.is_attacking and self.is_alive and not game_over:
 
             # The movement depends now on the player name.
             # If Luke (Player 1), the "A" and "D" handle left and right
