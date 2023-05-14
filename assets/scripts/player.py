@@ -136,10 +136,10 @@ class Player(pygame.sprite.Sprite):
         """
         # depending on the state, set the action parameter to select the corresponding sprite sheet
         if self.is_jumping:
-            self.action = 3
+            self.update_action(3)
         else:
             if self.is_attacking:
-                self.action = 1
+                self.update_action(1)
             elif self.is_blocking:
                 pass # needs to be implemented. The running animation is the 
                         #placeholder currently for this state 
@@ -148,9 +148,15 @@ class Player(pygame.sprite.Sprite):
             elif self.is_falling:
                 pass # needs to be implemented
             elif self.is_running:
-                self.action = 2
+                self.update_action(2)
             else:
-                self.action = 0 # idle state
+                self.update_action(0) # idle state
+
+    def update_action(self, new_action):
+        """helper function to ensure that a new animation starts from beginning"""
+        if new_action != self.action: 
+            self.action = new_action
+            self.frame_index = 0
 
     def move(self, screen_width, screen_height, surface, target):
         """to handle motion of a player"""
