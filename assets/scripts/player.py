@@ -123,6 +123,11 @@ class Player(pygame.sprite.Sprite):
             #when the animation is complete, allow to attack again
             if self.action==1:
                 self.is_attacking = 0
+            # in case when Luke is defeated, he should stay lying on the ground.
+            # therefore, we will keep drawing the last frame in that case
+            if self.action==5:
+                self.frame_index = len(self.animation_list[5]) - 1
+
         img = self.animation_list[self.action][int(self.frame_index)]
         #flip the image so that the fighters face each other
         self.image = pygame.transform.flip( img,  self.flip , False)
@@ -146,13 +151,10 @@ class Player(pygame.sprite.Sprite):
                 pass # needs to be implemented
             elif self.is_falling:
                 self.update_action(5) # falling state
-                # needs to be refined once we have defined a victory/defeat state
-                # to ensure that this animation is played only once, 
-                # and not in an infitinite loop like the other animations: 
-                # luke should be lying on the ground constantly.
             elif self.is_running:
                 self.update_action(2)
             else:
+                #self.update_action(0) # idle state
                 self.update_action(0) # idle state
 
     def update_action(self, new_action):
