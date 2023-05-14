@@ -142,6 +142,9 @@ class Player(pygame.sprite.Sprite) :
                 if key[pygame.K_r]:  #attacking of the player
                     self.attack_type = 1
                     self.attack(surface, target)
+                    # play the attack sound fx
+                    self.sound_manager.play_luke_attack_sound()
+
             elif self.name == "Darth Vader":
                 if key[pygame.K_LEFT]:
                     delta_x = -player_speed
@@ -153,6 +156,8 @@ class Player(pygame.sprite.Sprite) :
                 if key[pygame.K_RSHIFT]:  #attacking of the player
                     self.attack_type = 1
                     self.attack(surface, target)
+                    # play the attack sound fx
+                    self.sound_manager.play_darth_attack_sound()
 
         # reduce velocity each frame so that jumping slows down and eventually reverses
         self.velocity_y += gravity
@@ -185,10 +190,6 @@ class Player(pygame.sprite.Sprite) :
         """handles the attack movement 
             not implemented yet
         """
-
-        # play the attack sound fx
-        self.sound_manager.play_luke_attack_sound()
-
 
         # set attacking state to suppress any other movements
         # currently this would just freeze the player
