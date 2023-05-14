@@ -24,7 +24,7 @@ class HealthBar():
         self.border_colour = WHITE
         self.health_colour = BLUE if player.color == 'blue' else RED
         # Set the font for the health text
-        self.font = pygame.font.SysFont('Arial', 14)
+        self.font = pygame.font.SysFont('Nunito', 14)
 
     def draw(self, screen):
         """Draws the health bar on the screen"""
@@ -153,13 +153,14 @@ class Player(pygame.sprite.Sprite):
                         self.is_jumping = True
                         # play the jump sound fx
                     self.sound_manager.play_luke_jump_sound()
-                if key[pygame.K_r]:  # attacking of the player
+                    if key[pygame.K_r]:  # attacking of the player
                         self.attack_type = 1
                         self.attack(surface, target)
-                    if key[pygame.K_q] and not self.is_blocking:
-                        self.block() # blocks an attack when "q" is pressed"
                     # play the attack sound fx
                     self.sound_manager.play_luke_attack_sound()
+                    if key[pygame.K_q] and not self.is_blocking:
+                        self.block() # blocks an attack when "q" is pressed"
+                    
             elif self.name == "Darth Vader":
                 if not self.is_blocking:  # stop all movements if blocking
                     if key[pygame.K_LEFT]:
@@ -170,10 +171,12 @@ class Player(pygame.sprite.Sprite):
                         self.velocity_y = -30 # jumping of the players.
                         self.is_jumping = True
                         # play the jump sound fx
-                    self.sound_manager.play_darth_jump_sound()
-                if key[pygame.K_RSHIFT]: # attacking of the player
+                        self.sound_manager.play_darth_jump_sound()
+                    if key[pygame.K_RSHIFT]: # attacking of the player
                         self.attack_type = 1
                         self.attack(surface, target)
+                        # play the attack sound fx
+                        self.sound_manager.play_darth_attack_sound()
                     if key[pygame.K_SLASH] and not self.is_blocking:
                         self.block() # blocks an attack when "/" is pressed"
 
@@ -181,8 +184,7 @@ class Player(pygame.sprite.Sprite):
             # checks if more than 1 second has passed since blocking
             if current_time - self.blocking_start_time >= 1000:
                 self.is_blocking = False  # Changes blocking to false
-                    # play the attack sound fx
-                    self.sound_manager.play_darth_attack_sound()
+                    
 
         # reduce velocity each frame so that jumping slows down and eventually reverses
         self.velocity_y += gravity
@@ -236,9 +238,9 @@ class Player(pygame.sprite.Sprite):
         if attacking_rect.colliderect(target.rect):
             # play the hit sound fx
             self.sound_manager.play_hit_sound()
-            # Reduces health if is bigger than 0 
-            if target.health > 0:
-                target.health -= 10
+            if target.health > 0:  # Reduces health if is bigger than 0
+                if target.is_blocking is False:  # only deals damage if target isn't blocking
+                    target.health -= 1
 
         pygame.draw.rect(surface, "green", attacking_rect)
         return
