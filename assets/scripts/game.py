@@ -4,6 +4,7 @@ from display import Display
 import pygame
 from pygame import mixer
 from sound_manager import SoundManager
+import scene_manager
 
 mixer.init()
 
@@ -16,6 +17,10 @@ BLACK = (0, 0, 0)
 class Main:
     '''Class for main game loop'''
     def __init__(self):
+        
+        self.sceneManager = scene_manager.SceneManager()
+        self.mainMenu = scene_manager.TitleScene()
+        self.sceneManager.push(self.mainMenu)
         # initialise sound manager
         self.sound_manager = SoundManager()
         # display dimensions and name
@@ -98,6 +103,8 @@ class Main:
         while True:
             if self.handle_events():
                 break
+            #self.sceneManager.input()
+            #self.sceneManager.draw_scene(self.display)
 
             self.display.draw_background(bg_image)# load background image
             self.display.draw_health_bar(self.health_bar_one)# load health bar player one

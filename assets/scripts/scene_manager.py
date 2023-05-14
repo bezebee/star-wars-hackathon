@@ -1,5 +1,5 @@
 import pygame
-import display
+from display import Display
 
 """This class is a central scene handler which should acomplish several things.
 It should be able to switch between scenes. This means that it must be able to draw a new scene. 
@@ -29,8 +29,12 @@ thenewboston - Pygame (Python Game Development) Tutorial - 39 - Pausing the Game
 https://www.youtube.com/watch?v=sDL7P2Jhlh8
 ***
 """
+screen_width= 640
+screen_height = 480 
 #parent class from which each scene can inherit methods
 class Scene:
+    
+
     def __init__(self):
         self.next = self
     #what to do when entering a scene
@@ -40,14 +44,14 @@ class Scene:
     def onExit(self):
         pass
     #manage inputs and events based on current scene
-    def input(self):
+    def input(self, sm):
         pass
     
     #handle scenes logic
-    def update_scene(self):
+    def update_scene(self, sm):
         pass
     #draw the scene in the to the window 
-    def draw_scene(self):
+    def draw_scene(self, sm, screen):
         pass
     
     #pause creates a new game loop where a screen is dipslayed
@@ -63,11 +67,14 @@ class Scene:
                     if event.key == pygame.K_c:
                         paused = False
                     elif event.key == pygame.K_q:
-                        pygame.quit()
+                        SceneManager.push(TitleScene())
 
     
 class TitleScene(Scene):
-    
+    def __init__(self):
+        super().__init__()
+
+       
     def onEnter(self):
         print('Now entering Main Menu...')
 
@@ -79,11 +86,18 @@ class TitleScene(Scene):
         #enter main game
         if keys[pygame.K_RETURN]:
             sm.push(GameScene())
+        elif keys[pygame.K_ESCAPE]:
+            pygame.quit()
             
-    def update_scene(self, sm):
-        pass
-    def draw_scene(self, sm):
-        pass
+    def update_scene(self, sm, screen):
+        Display.update(screen)
+    def draw_scene(self, sm, screen):
+        self.display = Display(screen_width, screen_height, 'Luke Vs Vader')
+        screen = self.display.load_image('assets/images/background/background_desert.png', (screen_width, screen_height))
+        self.display.draw_background(screen)
+        self.display.update()
+
+
     
 class GameScene(Scene):
     def onEnter(self):
@@ -99,11 +113,13 @@ class GameScene(Scene):
         #return to title screen
         elif keys[pygame.K_q]:
             sm.push(TitleScene())
-    def update_scene(self, sm):
-        pass
-    def draw_scene(self, sm):
-        pass
 
+    def draw_scene(self, sm, screen):
+        self.display = Display(640, 480, 'Luke Vs Vader')
+        bg_image = self.display.load_image('assets/images/background/background_swamp.png', (screen_width, screen_height))
+        self.display.draw_background(bg_image)
+        self.display.update()
+   
 class GameOver(Scene):
     def onEnter(self):
         print('Now entering Game Over...')
@@ -132,23 +148,24 @@ class SceneManager:
     def __init__(self):
         #create an array of scenes
         self.scenes = []
-
+    #to enter the scene
     def enterScene(self):
         if len(self.scenes) >0:
             self.scenes[-1].onEnter()
-
+    #to exit the scene
     def exitScene(self):
         if len(self.scenes) >0:
             self.scenes[-1].onExit()
+    #to handle inputs in scene
     def input(self):
         if len(self.scenes) > 0:#check that a scene exists
             self.scenes[-1].input(self)
-
-    def update_scene(self):
-        self.scenes[-1].update_scene(self)
-
-    def draw(self):
-        self.scenes[-1].draw_scene(self)
+    #to handle scene logic
+    def update_scene(self, screen):
+        self.scenes[-1].update_scene(self, screen)
+    #to draw the scene
+    def draw_scene(self, screen):
+        self.scenes[-1].draw_scene(self, screen)
 
     def push(self, scene):
         self.exitScene()        
