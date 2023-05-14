@@ -130,22 +130,23 @@ class Player(pygame.sprite.Sprite):
         based on the current state of the player, set action variable to change between animation types
         0 : idle, 1: attack , 3: running, 4: jumping
         """
+        # depending on the state, set the action parameter to select the corresponding sprite sheet
         if self.is_jumping:
             self.action = 3
-        elif self.is_attacking:
-            self.action = 1
-        elif self.is_blocking:
-            self.action = 2
-            pass # needs to be implemented. The running animation is the 
-                 #placeholder currently for this state 
-        elif self.is_winning:
-            pass # needs to be implemented
-        elif self.is_falling:
-            pass # needs to be implemented
-        elif self.is_running:
-            pass # needs to be implemented
         else:
-            self.action = 0 # idle state
+            if self.is_attacking:
+                self.action = 1
+            elif self.is_blocking:
+                pass # needs to be implemented. The running animation is the 
+                        #placeholder currently for this state 
+            elif self.is_winning:
+                pass # needs to be implemented
+            elif self.is_falling:
+                pass # needs to be implemented
+            elif self.is_running:
+                self.action = 2
+            else:
+                self.action = 0 # idle state
 
     def move(self, screen_width, screen_height, surface, target):
         """to handle motion of a player"""
@@ -249,6 +250,12 @@ class Player(pygame.sprite.Sprite):
         # update player position.
         self.rect.centerx += delta_x
         self.rect.centery += delta_y
+
+        # update the player state
+        if abs(delta_x) > 0:
+            self.is_running = True
+        else:
+            self.is_running = False
 
     def block(self):
         '''Handles the blocking action'''
