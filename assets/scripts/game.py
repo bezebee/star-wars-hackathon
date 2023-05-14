@@ -29,10 +29,10 @@ class Main:
         self.clock = pygame.time.Clock()
         # add first player to the game.
         # load fighters spritesheet
-        luke_sheet = self.display.load_image("assets/images/luke/Sprites/Frame-four-movements-49x72.png")
+        luke_sheet = self.display.load_image("assets/images/luke/Sprites/Frame-six-movements-49x72.png")
         darth_sheet = self.display.load_image("assets/images/darth/Sprites/idle.png")
         # define number of steps in each animation
-        LUKE_ANIMATION_STEPS = [7, 4, 8, 4]
+        LUKE_ANIMATION_STEPS = [7, 4, 8, 4, 8, 6, 6]
         DARTH_ANIMATION_STEPS = [ 8 ]
         # define the scaling of the images from the sprite sheet to match the rectangle size
         LUKE_SCALE = 2
