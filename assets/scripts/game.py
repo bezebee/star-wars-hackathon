@@ -59,6 +59,8 @@ class Main:
         self.intro_count = 3
         # update last count
         self.last_count_update = pygame.time.get_ticks()
+        # define game over
+        self.game_over = False
 
     def handle_events(self):
         '''get all events that pygame has registered'''
@@ -69,11 +71,11 @@ class Main:
 
     def update_players(self):
         '''handle the movement of both players'''
-        # luke gets vader as target assigned by last parameter
-        # vader gets luke as target assigned by last parameter
+        # luke gets vader as target assigned by second last parameter
+        # vader gets luke as target assigned by second last parameter
         for luke, vader in zip(self.player_one, self.player_two):
-            luke.move(self.display.width, self.display.height, self.display.screen, vader)
-            vader.move(self.display.width, self.display.height, self.display.screen, luke)
+            luke.move(self.display.width, self.display.height, self.display.screen, vader, self.game_over)
+            vader.move(self.display.width, self.display.height, self.display.screen, luke, self.game_over)
     
     def update_countdown(self):
         '''Handle updating the game countdown'''
@@ -88,6 +90,19 @@ class Main:
             if (pygame.time.get_ticks() - self.last_count_update) >= 1000:
                 self.intro_count -= 1
                 self.last_count_update = pygame.time.get_ticks()
+
+    def check_game_over(self):
+        '''Check for game over'''
+        # check for player defeat
+        if self.game_over == False:
+            if self.player_one.sprite.is_alive == False:
+                self.game_over = True
+            elif self.player_two.sprite.is_alive == False:
+                self.game_over = True
+        else:
+            # display game over text
+            self.display.draw_text("Game Over!", self.count_font, WHITE, self.display.width / 3.5 , self.display.height / 3)
+            self.game_over = False
 
     def run(self):
         '''Function to run the game'''
@@ -112,6 +127,7 @@ class Main:
             self.update_countdown() # load function that handles countdown at the start of the game
             self.display.draw_sprite(self.player_one)# loads player one
             self.display.draw_sprite(self.player_two)# loads player two
+            self.check_game_over() # check for game over
             self.display.update()# update display
             self.clock.tick(60)# start clock
 
