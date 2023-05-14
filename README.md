@@ -1,10 +1,10 @@
 
 
-# Star Wars Fighter
+# Luke VS Vader
 
-![Star Wars Fighter](https://res.cloudinary.com/dugnokxox/image/upload/v1683981748/Untitled_design_3_1_bin4w8.png)
+![Luke VS Vader](https://res.cloudinary.com/dugnokxox/image/upload/v1683981748/Untitled_design_3_1_bin4w8.png)
 
-Star Wars Fighter is a Python/Pygame-based game inspired by the classic Street Fighter series, set in the iconic Star Wars universe. In this game, players can engage in intense battles between legendary characters such as Luke Skywalker and Darth Vader.
+Luke VS Vader is a Python/Pygame-based game inspired by the classic Street Fighter series, set in the iconic Star Wars universe. In this game, players can engage in intense battles between legendary characters such as Luke Skywalker and Darth Vader.
 
 ## About the Game
 
@@ -16,24 +16,24 @@ Star Wars Street Fighter is designed for players aged 15 and above. It captures 
 
 ---
 
-# Team
+# Team **Code Troopers**
 ## Development 
  
 <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/2956511464374_571116d863fdb7cfdddc_original_twyjgm.jpg" width="100" height="100"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972499/T0L30B202-U04DA4ZBYQP-d6a19f923a1c-512_mjw3aj.jpg" width="100" height="100"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5096181649479_1cb1d13081a7b21529ee_original_z2stt5.jpg" width="100" height="100"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/T0L30B202-U027SSHGWR2-ee27a6441a05-512_big514.jpg" width="100" height="100"> |<img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683974819/T0L30B202-U035YTTV8AY-15207e3a48c9-512_ugxg9a.jpg" width="100" height="100">
 --- | --- | --- | --- | --- 
 **Alexa** | **Nils** | **Enda** | **Marcello** | **Axel**
 
-## Design, Documentation
+## Audio, Design, Documentation
 
 <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5157186135504_bde3e09c15e748b14e2b_original_vaun4g.jpg" width="100" height="100"> |<img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5119376632039_db27c3bf13f8f4dbcd96_original_if6wmu.png" width="100" height="100"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972499/1991261958708_34b36fa33c26782c2f14_original_kuz6uu.png" width="100" height="100">
 --- | --- | ---
-**Stefanie (Lead Designer)** | **Birger** | **Kasia (Scrum Master)** 
+**Stefanie (Lead Designer)** | **Birger (Lead Audio)** | **Kasia (Scrum Master)** 
 ---
 
 # Design
 
 ### Typography
-The game development for the star-wars-hackathon utilized the Bungee and Nunito font.
+The game development for the this project utilized the Bungee and Nunito font.
 
 
 | Bungee                                         | Nunito                                          |

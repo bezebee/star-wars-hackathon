@@ -1,6 +1,6 @@
 """Class to describe a player of this game"""
 import pygame
-from soundmanager import SoundManager
+from sound_manager import SoundManager
 pygame.font.init() # Initialize the Pygame font
 
 # Colour variables
@@ -84,6 +84,9 @@ class Player(pygame.sprite.Sprite) :
         self.action = 0  # 0 is idle, 1 is run
         self.frame_index = 0
         self.sound_manager = SoundManager()
+        # just for debugging. This is just to confirm that the second movement (attack) of the luke character gets displayed correctly.
+        if self.name=="Luke Skywalker":
+            self.action = 1
 
     def load_images(self, sprite_sheet, animation_steps):
         """extract images from spritesheet"""
@@ -140,9 +143,13 @@ class Player(pygame.sprite.Sprite) :
                 if key[pygame.K_w] and not self.is_jumping:
                     self.velocity_y = -30 # jumping of the players.
                     self.is_jumping = True
+                    # play the jump sound fx
+                    self.sound_manager.play_luke_jump_sound()
                 if key[pygame.K_r]:  #attacking of the player
                     self.attack_type = 1
                     self.attack(surface, target)
+                    # play the attack sound fx
+                    self.sound_manager.play_luke_attack_sound()
             elif self.name == "Darth Vader":
                 if key[pygame.K_LEFT]:
                     delta_x = -player_speed
@@ -151,9 +158,13 @@ class Player(pygame.sprite.Sprite) :
                 if key[pygame.K_UP] and not self.is_jumping:
                     self.velocity_y = -30 # jumping of the players.
                     self.is_jumping = True
+                    # play the jump sound fx
+                    self.sound_manager.play_darth_jump_sound()
                 if key[pygame.K_RSHIFT]:  #attacking of the player
                     self.attack_type = 1
                     self.attack(surface, target)
+                    # play the attack sound fx
+                    self.sound_manager.play_darth_attack_sound()
 
         # reduce velocity each frame so that jumping slows down and eventually reverses
         self.velocity_y += gravity
@@ -187,14 +198,10 @@ class Player(pygame.sprite.Sprite) :
             not implemented yet
         """
 
-        # play the attack sound fx
-        self.sound_manager.play_luke_attack_sound()
-
-
         # set attacking state to suppress any other movements
         # currently this would just freeze the player
         # i will not activate the is_attacking for now 
-        # but if you want to keep implementing, uncomment the next line 
+        # but if you want to keep implementing, uncomment the next lineß
         #self.is_attacking = True
 
         # create an attacking rectanlge when the player presses attack button
@@ -206,6 +213,8 @@ class Player(pygame.sprite.Sprite) :
 
         # check for collision. if the target player is in reach, reduce health by 10
         if attacking_rect.colliderect(target.rect):
+            # play the hit sound fx
+            self.sound_manager.play_hit_sound()
             # Reduces health if is bigger than 0 
             if target.health > 0:
                 target.health -= 10
