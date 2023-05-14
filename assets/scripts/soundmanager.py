@@ -6,7 +6,7 @@ class SoundManager:
         mixer.init()
         pygame.init()
         self.background_music = "assets/audio/music.mp3"
-        self.luke_attack_fx = mixer.Sound("assets/audio/lightsabre_luke.mp3")
+        self.luke_attack_fx = mixer.Sound("assets/audio/lightsabre_luke.wav")
         self.luke_attack_fx.set_volume(0.5)
         self.darth_attack_fx = mixer.Sound("assets/audio/lightsabre_darth.mp3")
         self.darth_attack_fx.set_volume(0.5)
@@ -22,6 +22,6 @@ class SoundManager:
     def play_darth_attack_sound(self):
         self.darth_attack_fx.play()
 
-    def cleanup(self):
-        mixer.quit()
-        pygame.quit()
+    # def cleanup(self):
+    #     mixer.quit()
+    #     pygame.quit()
