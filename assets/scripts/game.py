@@ -104,6 +104,7 @@ class Main:
         else:
             # display game over text
             self.display.draw_text("Game Over!", self.count_font, WHITE, self.display.width / 3.5 , self.display.height / 3)
+            
             #self.game_over = False
 
     def Pause(self):
