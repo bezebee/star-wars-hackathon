@@ -187,18 +187,6 @@ class Main:
             if self.handle_events():
                 break
 
-            #for event in pygame.event.get():
-            #    if event.type == pygame.KEYDOWN:
-            #        if event.key == pygame.K_ESCAPE:
-            #            intro = True
-            #            self.display.draw_background(scene.title_img)
-
-            #for event in pygame.event.get():
-            #    if event.type == pygame.KEYDOWN:
-            #        if event.key == pygame.K_ESCAPE:
-            #            intro = True
-            #            self.display.draw_background(scene.title_img)
-
             self.display.draw_background(bg_image)# load background image
             self.display.draw_health_bar(self.health_bar_one)# load health bar player one
             self.display.draw_health_bar(self.health_bar_two)# load health bar player two
