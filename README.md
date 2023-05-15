@@ -205,7 +205,23 @@ The game development for the this project utilized the Bungee and Nunito font.
 
 ## Code
 
+### General:
 - Code inspiration from [Coding With Russ(YouTube)](https://www.youtube.com/watch?v=s5bd9KMSSW4)
+
+### Central Logic And Methods:
+- [Rik Cross - Python and Pygame Platform Game Part 19 - Scenes](https://www.youtube.com/watch?v=A6eSzbllWbM&t=2s)
+
+- [Rik Cross - Python and Pygame Platform Game Part 20 - Scene Transitions](https://www.youtube.com/watch?v=cZbqMA55PTI)
+
+- [PyGame Tutorial: Centralized Scene Logic](https://nerdparadise.com/programming/pygame/part7)
+
+- [PTTGRW- #13 - Scenes and the Game as an Object](https://www.youtube.com/watch?v=MFuO3NWEqjE)
+
+### Pausing:
+- [thenewboston - Pygame (Python Game Development) Tutorial - 39 - Pausing the Game](https://www.youtube.com/watch?v=sDL7P2Jhlh8)
+
+### Sprite Animations:
+- [Clear Code - The ultimate introduction to Pygame](https://www.youtube.com/watch?v=AY9MnQ4x3zk)
 
 ## Sprites
 
