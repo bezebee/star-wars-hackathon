@@ -1,4 +1,3 @@
-
 # LightSaber Battles
 
 ![LightSaber Battles](https://res.cloudinary.com/dugnokxox/image/upload/v1683981748/Untitled_design_3_1_bin4w8.png)
@@ -17,7 +16,7 @@ The game offers an MVP (Minimum Viable Product) version, featuring captivating f
 
 ## Target Audience
 
-Star Wars Street Fighter is designed for players aged 15 and above. It captures the essence of the Star Wars universe while acknowledging that the game may contain violent content. Please exercise discretion when sharing with younger audiences.
+LightSaber Battles is designed for players aged 15 and above. It captures the essence of the Star Wars universe while acknowledging that the game may contain violent content. Please exercise discretion when sharing with younger audiences.
 
 ---
 
@@ -35,9 +34,17 @@ Star Wars Street Fighter is designed for players aged 15 and above. It captures 
 
 ### Controls
 
-Code Trooper offers a streamlined control scheme that is easy to learn and master. With just six keys, you can take full control of your favorite Star Wars characters and unleash their devastating moves on your opponents.
+LightSaber Battles offers a streamlined control scheme that is easy to learn and master. With just six keys, you can take full control of your favorite Star Wars characters and unleash their devastating moves on your opponents.
 
 ![controls](https://res.cloudinary.com/dugnokxox/image/upload/v1684132120/how_to_play_uis4pr.png)
+
+### Pause
+
+| PAUSE |
+| :---: |
+|       |
+| **P** |
+|       |
 
 ### **Luke Skywalker Controls**
 
@@ -55,17 +62,7 @@ Code Trooper offers a streamlined control scheme that is easy to learn and maste
 | **Arrow Left** | **Arrow Right** | **Arrow Up** | **Keypad 1** | **Keypad 0** | **Keypad 2** |
 |                |                 |              |              |              |              |
 
-### Testing WIP
-
-| PAUSE |
-| :---: |
-|       |
-| **P** |
-|       |
-
 ---
-
-
 
 # Design
 
@@ -203,6 +200,7 @@ The game development for the this project utilized the Bungee and Nunito font.
 - Code inspiration from [Coding With Russ(YouTube)](https://www.youtube.com/watch?v=s5bd9KMSSW4)
 
 ### Sprites
+
 - Darth Vader main spritesheet borrowed from [The Spriters Resource](https://www.spriters-resource.com/snes/superstarwars2theempirestrikesback/sheet/52090/)
 - Darth Vader falling spritesheet borrowed from [Hyacinthcrown45 at Deviant Art](https://www.deviantart.com/hyacinthcrown45/art/Darth-Vader-sprite-sheet-911217907)
 - Luke Skywalker spritesheet borrowed from [Nicepng](https://www.nicepng.com/ourpic/u2q8o0r5u2u2u2w7_luke-skywalker-star-wars-sprite-sheet/)
