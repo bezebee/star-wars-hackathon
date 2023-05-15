@@ -117,6 +117,8 @@ class Main:
             self.display.draw_text("Paused", self.count_font, WHITE, self.display.width / 3.15 , self.display.height / 3)
             self.display.draw_text("C to Continue!", self.count_font, WHITE, self.display.width / 5 , self.display.height / 1.75)
             self.display.draw_text("ESC to Quit!", self.count_font, WHITE, self.display.width / 4.75 , self.display.height / 1.25)
+            # pause background music
+            self.sound_manager.pause_background_music()
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -125,6 +127,8 @@ class Main:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_c:
                         paused = False
+                        # start background music
+                        self.sound_manager.continue_background_music()
                     elif event.key == pygame.K_ESCAPE:
                         pygame.quit()
 
