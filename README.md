@@ -36,7 +36,7 @@ LightSaber Battles is designed for players aged 15 and above. It captures the es
 
 LightSaber Battles offers a streamlined control scheme that is easy to learn and master. With just six keys, you can take full control of your favorite Star Wars characters and unleash their devastating moves on your opponents.
 
-[controls](assets/readme/How%20To%20Play.png)
+![controls](assets/readme/How%20To%20Play.png)
 
 ### Pause
 
