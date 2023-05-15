@@ -104,7 +104,7 @@ class Main:
         else:
             # display game over text
             self.display.draw_text("Game Over!", self.count_font, WHITE, self.display.width / 3.5 , self.display.height / 3)
-            
+            self.restart()
             #self.game_over = False
 
     def Pause(self):
@@ -124,13 +124,32 @@ class Main:
                         paused = False
                     elif event.key == pygame.K_ESCAPE:
                         pygame.quit()
-
+                        quit()
             pygame.display.update()
             
+
+    def restart(self):
+        scene = Scene()
+        while self.game_over:
+            self.display.draw_background(scene.game_over)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_r:
+                        self.game_over = False
+                        self.run()
+                    elif event.key == pygame.K_ESCAPE:
+                        pygame.quit()
+                        quit()
+            self.display.update()
+
     
     def scene_flow(self):
         intro = True
         options = False
+        
         #Scene transitions
         while intro:
             scene = Scene()
@@ -173,6 +192,7 @@ class Main:
     def run(self):
         '''Function to run the game'''
         self.scene_flow()
+        Main.__init__(self)
         # load background image
         bg_image = self.display.load_image("assets/images/background/background_swamp.png",
                                             (self.display.width, self.display.height))
@@ -186,18 +206,6 @@ class Main:
         while True:
             if self.handle_events():
                 break
-
-            #for event in pygame.event.get():
-            #    if event.type == pygame.KEYDOWN:
-            #        if event.key == pygame.K_ESCAPE:
-            #            intro = True
-            #            self.display.draw_background(scene.title_img)
-
-            #for event in pygame.event.get():
-            #    if event.type == pygame.KEYDOWN:
-            #        if event.key == pygame.K_ESCAPE:
-            #            intro = True
-            #            self.display.draw_background(scene.title_img)
 
             self.display.draw_background(bg_image)# load background image
             self.display.draw_health_bar(self.health_bar_one)# load health bar player one
