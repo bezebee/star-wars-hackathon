@@ -1,3 +1,4 @@
+
 # LightSaber Battles
 
 ![LightSaber Battles](https://res.cloudinary.com/dugnokxox/image/upload/v1683981748/Untitled_design_3_1_bin4w8.png)
@@ -22,8 +23,6 @@ Star Wars Street Fighter is designed for players aged 15 and above. It captures 
 
 ## Game Mechanics
 
----
-
 **Blocking**: The player can block attacks by holding down a key/button. While the key/button is pressed, the player will block all incoming attacks. However, the player will not be able to move or take any other actions while blocking.
 
 **Attack Type 1**: These attacks can always be blocked by the player and have a 1-second cooldown between uses.
@@ -38,7 +37,7 @@ Star Wars Street Fighter is designed for players aged 15 and above. It captures 
 
 Code Trooper offers a streamlined control scheme that is easy to learn and master. With just six keys, you can take full control of your favorite Star Wars characters and unleash their devastating moves on your opponents.
 
-![controls](assets/readme/How%20To%20Play.png)
+![controls](https://res.cloudinary.com/dugnokxox/image/upload/v1684132120/how_to_play_uis4pr.png)
 
 ### **Luke Skywalker Controls**
 
@@ -66,21 +65,7 @@ Code Trooper offers a streamlined control scheme that is easy to learn and maste
 
 ---
 
-# Team **Code Troopers**
 
-## Development
-
-| <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/2956511464374_571116d863fdb7cfdddc_original_twyjgm.jpg" width="130" height="130"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972499/T0L30B202-U04DA4ZBYQP-d6a19f923a1c-512_mjw3aj.jpg"  width="130" height="130"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5096181649479_1cb1d13081a7b21529ee_original_z2stt5.jpg"  width="130" height="130"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/T0L30B202-U027SSHGWR2-ee27a6441a05-512_big514.jpg"  width="130" height="130"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683974819/T0L30B202-U035YTTV8AY-15207e3a48c9-512_ugxg9a.jpg"  width="130" height="130"> |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Alexa**                                                                                                                                                 | **Nils**                                                                                                                                              | **Enda**                                                                                                                                                   | **Marcello**                                                                                                                                          | **Axel**                                                                                                                                              |
-
-## Audio, Design, Documentation
-
-| <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5157186135504_bde3e09c15e748b14e2b_original_vaun4g.jpg"  width="130" height="130"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5119376632039_db27c3bf13f8f4dbcd96_original_if6wmu.png"  width="130" height="130"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972499/1991261958708_34b36fa33c26782c2f14_original_kuz6uu.png"  width="130" height="130"> |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Stefanie (Lead Designer)**                                                                                                                               | **Birger (Lead Audio)**                                                                                                                                    | **Kasia (Scrum Master)**                                                                                                                                   |
-
----
 
 # Design
 
@@ -218,8 +203,9 @@ The game development for the this project utilized the Bungee and Nunito font.
 - Code inspiration from [Coding With Russ(YouTube)](https://www.youtube.com/watch?v=s5bd9KMSSW4)
 
 ### Sprites
-
-### Images
+- Darth Vader main spritesheet borrowed from [The Spriters Resource](https://www.spriters-resource.com/snes/superstarwars2theempirestrikesback/sheet/52090/)
+- Darth Vader falling spritesheet borrowed from [Hyacinthcrown45 at Deviant Art](https://www.deviantart.com/hyacinthcrown45/art/Darth-Vader-sprite-sheet-911217907)
+- Luke Skywalker spritesheet borrowed from [Nicepng](https://www.nicepng.com/ourpic/u2q8o0r5u2u2u2w7_luke-skywalker-star-wars-sprite-sheet/)
 
 ### Audio
 
@@ -328,8 +314,6 @@ python assets/scripts/game.py
 
 ## Install Pygame
 
-Certainly! Here are the installation steps for Pygame on macOS, rewritten in markdown format:
-
 1. Open a terminal on your Mac. You can do this by going to "Applications" -> "Utilities" -> "Terminal".
 
 2. Ensure that you have pip installed. Enter the following command in the terminal:
@@ -423,3 +407,19 @@ python3 assets/scripts/game.py
  
  
 Good luck and may the Force be with you!
+
+# Team **Code Troopers**
+
+## Development
+
+| <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/2956511464374_571116d863fdb7cfdddc_original_twyjgm.jpg" width="130" height="130"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972499/T0L30B202-U04DA4ZBYQP-d6a19f923a1c-512_mjw3aj.jpg"  width="130" height="130"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5096181649479_1cb1d13081a7b21529ee_original_z2stt5.jpg"  width="130" height="130"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/T0L30B202-U027SSHGWR2-ee27a6441a05-512_big514.jpg"  width="130" height="130"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683974819/T0L30B202-U035YTTV8AY-15207e3a48c9-512_ugxg9a.jpg"  width="130" height="130"> |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Alexa**                                                                                                                                                 | **Nils**                                                                                                                                              | **Enda**                                                                                                                                                   | **Marcello**                                                                                                                                          | **Axel**                                                                                                                                              |
+
+## Audio, Design, Documentation
+
+| <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5157186135504_bde3e09c15e748b14e2b_original_vaun4g.jpg"  width="130" height="130"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972498/5119376632039_db27c3bf13f8f4dbcd96_original_if6wmu.png"  width="130" height="130"> | <img src="https://res.cloudinary.com/dugnokxox/image/upload/v1683972499/1991261958708_34b36fa33c26782c2f14_original_kuz6uu.png"  width="130" height="130"> |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Stefanie (Lead Designer)**                                                                                                                               | **Birger (Lead Audio)**                                                                                                                                    | **Kasia (Scrum Master)**                                                                                                                                   |
+
+---
