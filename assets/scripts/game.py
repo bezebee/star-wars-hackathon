@@ -104,22 +104,20 @@ class Main:
         else:
             # display game over text
             self.display.draw_text("Game Over!", self.count_font, WHITE, self.display.width / 3.5 , self.display.height / 3)
-            
             #self.game_over = False
+            self.restart()
+            # play victory sound
+            #self.sound_manager.play_victory_sound()
 
-            # # play victory sound
-            # self.sound_manager.play_victory_sound()
 
     def Pause(self):
+        scene = Scene()
         paused = True
 
         while paused:
-            self.display.draw_text("Paused", self.count_font, WHITE, self.display.width / 3.15 , self.display.height / 3)
-            self.display.draw_text("C to Continue!", self.count_font, WHITE, self.display.width / 5 , self.display.height / 1.75)
-            self.display.draw_text("ESC to Quit!", self.count_font, WHITE, self.display.width / 4.75 , self.display.height / 1.25)
             # pause background music
             self.sound_manager.pause_background_music()
-
+            self.display.draw_background(scene.paused)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -131,13 +129,33 @@ class Main:
                         self.sound_manager.continue_background_music()
                     elif event.key == pygame.K_ESCAPE:
                         pygame.quit()
-
+                        quit()
             pygame.display.update()
             
+
+    def restart(self):
+        scene = Scene()
+        while self.game_over:
+            
+            self.display.draw_background(scene.game_over)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_r:
+                        self.game_over = False
+                        self.run()
+                    elif event.key == pygame.K_ESCAPE:
+                        pygame.quit()
+                        quit()
+            self.display.update()
+
     
     def scene_flow(self):
         intro = True
         options = False
+        
         #Scene transitions
         while intro:
              # Play title scene music
@@ -184,6 +202,7 @@ class Main:
     def run(self):
         '''Function to run the game'''
         self.scene_flow()
+        Main.__init__(self)
         # load background image
         bg_image = self.display.load_image("assets/images/background/background_swamp.png",
                                             (self.display.width, self.display.height))
