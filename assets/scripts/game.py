@@ -99,14 +99,16 @@ class Main:
         if self.game_over == False:
             if self.player_one.sprite.is_alive == False:
                 self.game_over = True
+                self.sound_manager.play_darth_victory_sound()
             elif self.player_two.sprite.is_alive == False:
                 self.game_over = True
+                self.sound_manager.play_luke_victory_sound()
+
         else:
             # display game over text
             self.display.draw_text("Game Over!", self.count_font, WHITE, self.display.width / 3.5 , self.display.height / 3)
             # stop background music and play game over sound
             self.sound_manager.stop_background_music()
-            self.sound_manager.play_gameover_sound()
             #self.game_over = False
             self.restart()
 
