@@ -115,6 +115,8 @@ class Main:
         paused = True
 
         while paused:
+            # pause background music
+            self.sound_manager.pause_background_music()
             self.display.draw_background(scene.paused)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -123,6 +125,8 @@ class Main:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_c:
                         paused = False
+                        # start background music
+                        self.sound_manager.continue_background_music()
                     elif event.key == pygame.K_ESCAPE:
                         pygame.quit()
                         quit()

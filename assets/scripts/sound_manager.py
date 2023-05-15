@@ -45,6 +45,12 @@ class SoundManager:
         pygame.mixer.music.set_volume(0.3)
         pygame.mixer.music.play(-1, 0.0, 5000)
 
+    def continue_background_music(self):
+        pygame.mixer.music.unpause()
+    
+    def pause_background_music(self):
+        pygame.mixer.music.pause()
+
     def play_luke_attack_sound(self):
         self.luke_attack_fx.play()
 
