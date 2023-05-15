@@ -28,8 +28,10 @@ class SoundManager:
         self.darth_force_fx.set_volume(0.5)
         self.luke_force_fx = mixer.Sound("assets/audio/luke_force.wav")
         self.luke_force_fx.set_volume(0.5)
-        self.victory_fx = mixer.Sound("assets/audio/victory.wav")
-        self.victory_fx.set_volume(0.5)
+        self.luke_victory_fx = mixer.Sound("assets/audio/luke_victory.wav")
+        self.luke_victory_fx.set_volume(0.5)
+        self.darth_victory_fx = mixer.Sound("assets/audio/darth_victory.mp3")
+        self.darth_victory_fx.set_volume(0.5)
 
     
     def play_title_scene_music(self):
@@ -80,9 +82,13 @@ class SoundManager:
 
     def play_luke_force_sound(self):
         self.luke_force_fx.play()
-        pygame.time.delay(1000)  # Delay for 1 second
+        pygame.time.delay(1000)
         self.luke_force_fx.stop()
     
-    def play_gameover_sound(self):
-        duration = 3200  # Duration in milliseconds
-        self.victory_fx.play(maxtime=duration)
+    def play_luke_victory_sound(self):
+        duration = 3200 
+        self.luke_victory_fx.play(maxtime=duration)
+    
+    def play_darth_victory_sound(self):
+        duration = 3200
+        self.darth_victory_fx.play(maxtime=duration)
