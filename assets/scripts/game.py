@@ -107,6 +107,9 @@ class Main:
             
             #self.game_over = False
 
+            # # play victory sound
+            # self.sound_manager.play_victory_sound()
+
     def Pause(self):
         paused = True
 
@@ -133,6 +136,8 @@ class Main:
         options = False
         #Scene transitions
         while intro:
+             # Play title scene music
+            self.sound_manager.play_title_scene_music()
             scene = Scene()
             self.display.draw_background(scene.title_img)
             for event in pygame.event.get():
@@ -140,6 +145,8 @@ class Main:
                     pygame.quit()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN:
+                        # stop title scene music
+                        self.sound_manager.stop_title_scene_music()
                         print("Game started")
                         intro = False
                     if event.key == pygame.K_o:
@@ -180,7 +187,6 @@ class Main:
         # load background music
         self.sound_manager.play_background_music()
 
-        
 
         #infinite game loop until the user clicks on the exit button
         while True:

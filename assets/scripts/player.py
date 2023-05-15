@@ -226,6 +226,8 @@ class Player(pygame.sprite.Sprite):
                         self.sound_manager.play_luke_jump_sound()
                     if key[pygame.K_f] and not self.is_blocking:
                         self.block()  # blocks an attack when "f" is pressed"
+                        # play the block sound fx
+                        self.sound_manager.play_block_sound()
                     if key[pygame.K_r] and self.attack_cooldown == 10 and not self.is_blocking:
                         self.attack_type = 1  # attack type 1 when "r" is pressed
                         self.attack(surface, target)  # calls attack function
@@ -238,6 +240,8 @@ class Player(pygame.sprite.Sprite):
                         self.attack(surface, target)  # calls attack function
                         self.force = 0  # sets force to 0
                         self.force = pygame.time.get_ticks()  # Start a timer
+                        # play the force sound fx
+                        self.sound_manager.play_luke_force_sound()
 
             elif self.name == "Darth Vader":
                 if not self.is_blocking:  # stop all movements if blocking
@@ -252,6 +256,8 @@ class Player(pygame.sprite.Sprite):
                         self.sound_manager.play_darth_jump_sound()
                     if key[pygame.K_KP0] and not self.is_blocking:
                         self.block()  # blocks an attack when "keypad 0" is pressed"
+                        # play the block sound fx
+                        self.sound_manager.play_block_sound()
                     if key[pygame.K_KP1] and self.attack_cooldown == 10 and not self.is_blocking:
                         self.attack_type = 1  # attack type 1 when "keypad 1"
                         self.attack(surface, target)  # calls attack function
@@ -264,6 +270,8 @@ class Player(pygame.sprite.Sprite):
                         self.attack(surface, target)  # calls atack fucntion
                         self.force = 0  # set force to zero
                         self.force = pygame.time.get_ticks()  # Start a timer
+                        # play the force sound fx
+                        self.sound_manager.play_darth_force_sound()
 
             current_time = pygame.time.get_ticks()  # gets current time
             # checks if more than 1 second has passed since blocking
