@@ -101,9 +101,11 @@ class Player(pygame.sprite.Sprite):
         self.is_falling = False
         self.is_running = False
         self.is_alive = True
+        self.is_dancing = False
         self.blocking_start_time = 0  # controls blocking cooldown time
         self.attack_type = 0
         self.attack_cooldown = 10  # controls attack type cooldown
+        self.dance_cooldown = 0
         self.health = 100
         self.force = 10  # controls attack type cooldown
         self.color = color
@@ -169,9 +171,16 @@ class Player(pygame.sprite.Sprite):
                 self.update_action(4)
             elif self.health <= 0:
                 self.health = 0
-                self.is_alive = False
+                if not self.is_dancing:
+                    self.dance_cooldown = pygame.time.get_ticks()  # Start a timer  # sets cooldown to sero
+                else:
+                    current_time = pygame.time.get_ticks()
+                    if current_time - self.dance_cooldown > 3000:
+                        self.is_alive = False
+                self.is_dancing = True
                 self.update_action(5)  # falling state
-                # self.action = 6 # death state
+            elif self.is_dancing:
+                self.update_action(4)  # dancing state
             elif self.is_running:
                 self.update_action(2)
             else:
@@ -208,7 +217,7 @@ class Player(pygame.sprite.Sprite):
 
         # for now, don't do any movements while attacking or if dead or if game over.
         # Can be refined later
-        if not self.is_attacking and self.is_alive and not game_over:
+        if not self.is_attacking and self.is_alive and not game_over and not self.is_dancing:
 
             # The movement depends now on the player name.
             # If Luke (Player 1), the "A" and "D" handle left and right
@@ -318,8 +327,12 @@ class Player(pygame.sprite.Sprite):
             self.is_running = False
         
         # store victory state
-        if self.is_alive and game_over: 
+        if self.is_alive and game_over:
             self.is_winning = True
+
+        # initiate the enemy to dance (or fall) when game is over
+        if self.is_dancing:
+            target.is_dancing = True
 
     def block(self):
         '''Handles the blocking action'''
