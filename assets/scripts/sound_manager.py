@@ -44,6 +44,9 @@ class SoundManager:
         pygame.mixer.music.load(background_music)
         pygame.mixer.music.set_volume(0.3)
         pygame.mixer.music.play(-1, 0.0, 5000)
+    
+    def stop_background_music(self):
+        pygame.mixer.music.stop()
 
     def continue_background_music(self):
         pygame.mixer.music.unpause()
@@ -80,7 +83,6 @@ class SoundManager:
         pygame.time.delay(1000)  # Delay for 1 second
         self.luke_force_fx.stop()
     
-    def play_victory_sound(self):
-        self.victory_fx.play()
-        pygame.time.delay(3000)  # Delay for 1 second
-        self.victory_fx.stop()
+    def play_gameover_sound(self):
+        duration = 3200  # Duration in milliseconds
+        self.victory_fx.play(maxtime=duration)

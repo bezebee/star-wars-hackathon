@@ -104,10 +104,11 @@ class Main:
         else:
             # display game over text
             self.display.draw_text("Game Over!", self.count_font, WHITE, self.display.width / 3.5 , self.display.height / 3)
+            # stop background music and play game over sound
+            self.sound_manager.stop_background_music()
+            self.sound_manager.play_gameover_sound()
             #self.game_over = False
             self.restart()
-            # play victory sound
-            #self.sound_manager.play_victory_sound()
 
 
     def Pause(self):
@@ -136,7 +137,7 @@ class Main:
     def restart(self):
         scene = Scene()
         while self.game_over:
-            
+
             self.display.draw_background(scene.game_over)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
