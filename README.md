@@ -8,8 +8,6 @@ Get ready for an electrifying battle in the heart of the swamp world of Dagobah 
 
 ## About the Game
 
----
-
 The game offers an MVP (Minimum Viable Product) version, featuring captivating fights and thrilling combat mechanics. Players will experience the excitement of intense one-on-one duels, showcasing the iconic lightsaber battles from the Star Wars saga.
 
 ---
@@ -181,6 +179,16 @@ The game development for the this project utilized the Bungee and Nunito font.
 
 ---
 
+# Future Implementations
+
+- [One Player Mode](https://github.com/bezebee/star-wars-hackathon/issues/9)
+- [Score System](https://github.com/bezebee/star-wars-hackathon/issues/7)
+- [More Advanced Combat Mechanics](https://github.com/bezebee/star-wars-hackathon/issues/11)
+- [More Advanced Movement Mechanics](https://github.com/bezebee/star-wars-hackathon/issues/2)
+- [More Advanced Game Over Functionality](https://github.com/bezebee/star-wars-hackathon/issues/108)
+
+---
+
 # Testing
 
 ## Bugs
@@ -190,6 +198,8 @@ The game development for the this project utilized the Bungee and Nunito font.
 ## Fixed Bugs
 
     Flickering of Game Over Screen
+
+---
 
 # Credits
 
@@ -208,6 +218,8 @@ The game development for the this project utilized the Bungee and Nunito font.
 - Sound FX created in [Arturia Pigments](https://www.arturia.com/products/software-instruments/pigments/overview)
 - Background music from [Darth Vader(YouTube)](https://youtu.be/M6PIZ0kSgNw)
 - Background music from [Luke Skywalker(YouTube)](https://youtu.be/5hIBHbtGb-A)
+
+---
 
 # Deployment
 
@@ -403,6 +415,8 @@ python3 assets/scripts/game.py
  
  
 Good luck and may the Force be with you!
+
+---
 
 # Team **Code Troopers**
 
