@@ -12,4 +12,5 @@ class Scene:
 
         self.game_over = pygame.image.load('assets/images/screens/game-over.png')
         self.game_over = pygame.transform.scale(self.game_over, (640, 480))
-        self.game_over.fill((255, 255, 255, alpha), None, pygame.BLEND_RGBA_MULT)
+        
+        self.paused = pygame.image.load('assets/images/screens/paused.png')
